@@ -11,10 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/dist/css/AdminLTE.min.css') }}">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-      page. However, you can choose any other skin. Make sure you
-      apply the skin class to the body tag so the changes take effect.
--->
+
 <link rel="stylesheet" href="{{ asset('assets/dashboard/dist/css/skins/skin-blue.min.css') }}">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,3 +20,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="{{ asset('assets/dashboard/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/plugins/sweetalert/sweetalert.css') }}">
+
+@yield('custom-css')
+@yield('custom-js')

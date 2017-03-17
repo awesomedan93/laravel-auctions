@@ -1,34 +1,76 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Models\Auctioneer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-/**
- * Class HomeController
- * @package App\Http\Controllers
- */
 class AuctioneersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return Response
-     */
     public function index()
     {
-        return view('dashboard.pages.auctioneers');
+        $auctioneers = Auctioneer::all();
+
+        return view('dashboard.pages.auctioneers.list')->with('auctioneers', $auctioneers);
+    }
+
+    public function create()
+    {
+        return view('dashboard.pages.auctioneers.create');
+    }
+
+    public function store(Request $request)
+    {
+        $inputData = $request->all();
+        $inputData['user_id'] = Auth::user()->id;
+
+        $client = new Auctioneer();
+        $client->fill($inputData);
+        $saved = $client->save();
+
+        if($saved){
+            return redirect()->route('auctioneers.index');
+        }
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        $auctioneer = Auctioneer::find($id);
+
+        return view('dashboard.pages.auctioneers.edit')->with('auctioneer',$auctioneer);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $inputData = $request->all();
+        $inputData['user_id'] = Auth::user()->id;
+
+        $updated = Auctioneer::find($id)->update($inputData);
+
+        if($updated){
+            return redirect()->route('auctioneers.index');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $deleted = Auctioneer::find($id)->delete();
+
+        if($deleted){
+            return redirect()->route('auctioneers.index');
+        }
     }
 }

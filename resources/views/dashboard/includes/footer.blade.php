@@ -6,3 +6,5 @@
 <script src="{{ asset ("assets/dashboard/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset ("assets/dashboard/dist/js/app.min.js") }}" type="text/javascript"></script>
+
+@yield('custom-footer-js')
