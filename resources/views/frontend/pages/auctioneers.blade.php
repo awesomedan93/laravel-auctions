@@ -1,5 +1,5 @@
-@extends('layouts.default')
-@section('content')
+@extends('frontend.layouts.default')
+@section('frontend.content')
     <div class="content">
 
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
-    @include('includes.head')
+    @include('frontend.includes.head')
 </head>
 <body id="top">
 
-@include('includes.header')
+@include('frontend.includes.header')
 
 <div class="wrapper row3">
     <main class="hoc container clear">
@@ -18,7 +18,7 @@
     </main>
 </div>
 
-@include('includes.footer')
+@include('frontend.includes.footer')
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->

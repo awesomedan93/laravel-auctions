@@ -29,7 +29,6 @@ class AuctioneersController extends Controller
      */
     public function index()
     {
-
-        return view('adminlte::templates.auctioneers.auctioneers');
+        return view('dashboard.pages.auctioneers');
     }
 }

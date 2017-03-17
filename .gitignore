@@ -8,3 +8,4 @@ Homestead.json
 Homestead.yaml
 .env
 /webpack.mix.js
+/bower_components/

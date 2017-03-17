@@ -1,5 +1,5 @@
-@extends('layouts.default')
-@section('content')
+@extends('frontend.layouts.default')
+@section('frontend.content')
     <div class="content">
         <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
         <ul>

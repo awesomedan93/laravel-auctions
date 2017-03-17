@@ -1,10 +1,16 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
+class AuctioneersHousesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,10 +25,11 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        return view('dashboard.pages.home');
+
+        return view('dashboard.pages.auctioneers-houses');
     }
 }

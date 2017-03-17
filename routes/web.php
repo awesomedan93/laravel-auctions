@@ -3,22 +3,22 @@
 //BASIC ROUTES
 
 Route::get('/', function () {
-    return view('pages/home');
+    return view('frontend/pages/home');
 });
 
 Route::get('/auctioneers', function () {
 
-    return view('pages/auctioneers');
+    return view('frontend/pages/auctioneers');
 });
 
 Route::get('/auctioneers-houses', function () {
 
-    return view('pages/auctioneers-houses');
+    return view('frontend/pages/auctioneers-houses');
 });
 
 Route::get('/contact', function () {
 
-    return view('pages/contact');
+    return view('frontend/pages/contact');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -34,11 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::auth();
 
-Route::get('/dashboard/home', 'HomeController@index');
-
 //Disable adminLte default routes
 Route::get('/home', function () {
     abort(404);
 });
 
+Route::get('/dashboard/home', 'HomeController@index');
+
 Route::get('/dashboard/auctioneers', 'AuctioneersController@index');
+
+Route::get('/dashboard/auctioneers-houses', 'AuctioneersHousesController@index');
+
+Auth::routes();
