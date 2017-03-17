@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//BASIC ROUTES
 
 Route::get('/', function () {
     return view('pages/home');
@@ -38,6 +29,16 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });
+
+//DASHBOARD ROUTES
+
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/dashboard/home', 'HomeController@index');
+
+//Disable adminLte default routes
+Route::get('/home', function () {
+    abort(404);
+});
+
+Route::get('/dashboard/auctioneers', 'AuctioneersController@index');
