@@ -15,8 +15,8 @@
                 <small>Optional description</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Auctioneers</a></li>
+                <li class="active">Show all auctioneers</li>
             </ol>
         </section>
 
@@ -27,7 +27,7 @@
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">Auctioneers list</h3>
                             <a href="{{ route('auctioneers.create') }}" role="button" class="btn btn-success btn-md pull-right">Create</a>
                         </div>
                         <!-- /.box-header -->
@@ -57,8 +57,8 @@
                                             <a href="#" role="button" class="btn btn-link btn-xs">View</a>
                                             <a href="{{ URL::action('AuctioneersController@edit', [$auctioneer->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
-                                            {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'style'=>'display:inline;']) }}
-                                                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                                            {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
+                                                <button type="submit" id="button-delete-auctioneer" class="btn btn-danger btn-xs">Delete</button>
                                             {{ Form::close() }}
 
                                         </td>
@@ -103,23 +103,30 @@
         });
     </script>
     <script>
-        swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel plx!",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                } else {
-                    swal("Cancelled", "Your imaginary file is safe :)", "error");
-                }
-            });
+
+        $("#button-delete-auctioneer").click(function(e){
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this auctioneer!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        swal("Deleted!", "The auctioneer has been deleted.", "success");
+                        setTimeout(function() {
+                            $('#auctioneer-form-delete').submit();
+                        }, 2000);
+                    } else {
+                        swal("Cancelled", "", "error");
+                    }
+                });
+        });
     </script>
 @endsection
