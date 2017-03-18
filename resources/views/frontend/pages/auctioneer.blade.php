@@ -1,21 +1,13 @@
 @extends('frontend.layouts.default')
-@section('custom-css')
-    <style>
-        #map {
-            height: 500px;
-            width: 500px;
-        }
-    </style>
-@endsection
 @section('content')
     <div class="wrapper row2">
         <div id="breadcrumb" class="hoc clear">
-            <!-- ################################################################################################ -->
+
             <ul>
                 <li><a href="{{ url('/auctioneers') }}">Auctioneers</a></li>
                 <li><a href="#">{{ $auctioneer->name }}</a></li>
             </ul>
-            <!-- ################################################################################################ -->
+
         </div>
     </div>
 
@@ -41,7 +33,7 @@
                         {{ $auctioneer->email }}
                     </p>
                     <p>
-                        <a href="{{ addhttp($auctioneer->website) }}">Visit their website</a>
+                        <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
                     </p>
 
                 </div>

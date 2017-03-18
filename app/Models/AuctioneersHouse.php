@@ -10,6 +10,6 @@ class AuctioneersHouse extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'address', 'phone', 'email', 'website', 'user_id',
+        'name', 'address', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
     ];
 }

@@ -19,6 +19,8 @@ class CreateAuctioneersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
             $table->string('phone');
             $table->string('email');
             $table->string('website');

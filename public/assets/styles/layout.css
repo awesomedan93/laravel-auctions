@@ -374,6 +374,10 @@ table a, #comments a{background-color:inherit;}
 	width:45%;
 	float: right;
 }
+#map {
+	height: 400px;
+	width: 350px;
+}
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -436,6 +440,18 @@ table a, #comments a{background-color:inherit;}
 	.latest article{max-width:320px;}
 
 	.container, #footer{padding-bottom:70px;}/* Not neccessary - just looks better */
+	.left-block {
+		width:100%;
+		float: none;
+	}
+	.right-block {
+		width:100%;
+		float: none;
+	}
+	#map {
+		height: 400px;
+		width: 100%;
+	}
 }
 
 
