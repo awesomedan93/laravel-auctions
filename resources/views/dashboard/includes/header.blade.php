@@ -65,9 +65,9 @@
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li {{ ((Request::is('dashboard/home')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/home') }}"><i class="fa fa-link"></i> <span>Home</span></a></li>
-            <li {{ ((Request::is('dashboard/auctioneers')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers') }}"><i class="fa fa-link"></i> <span>Auctioneers</span></a></li>
-            <li {{ ((Request::is('dashboard/auctioneer-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneer-houses') }}"><i class="fa fa-link"></i> <span>Auctioneers Houses</span></a></li>
+            <li {{ ((Request::is('dashboard/home')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/home') }}"><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
+            <li {{ ((Request::is('dashboard/auctioneers')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers') }}"><i class="glyphicon glyphicon-usd"></i> <span>Auctioneers</span></a></li>
+            <li {{ ((Request::is('dashboard/auctioneer-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneer-houses') }}"><i class="fa fa-group"></i> <span>Auctioneers Houses</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
