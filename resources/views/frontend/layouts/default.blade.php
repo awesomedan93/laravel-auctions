@@ -16,5 +16,8 @@
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.backtotop.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.mobilemenu.js') }}"></script>
+
+@yield('custom-footer-js')
+
 </body>
 </html>

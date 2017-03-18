@@ -155,6 +155,7 @@
 /* Transition Fade
 --------------------------------------------------------------------------------------------------------------- */
 *, *::before, *::after{transition:all .3s ease-in-out;}
+#map *, #map *::before, #map *::after{transition:none;}
 #mainav form *{transition:none !important;}
 
 
@@ -365,6 +366,15 @@ tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color
 table a, #comments a{background-color:inherit;}
 
 
+.left-block {
+	width:45%;
+	float: left;
+}
+.right-block {
+	width:45%;
+	float: right;
+}
+
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -451,3 +461,4 @@ table a, #comments a{background-color:inherit;}
 	.hoc.split{max-width:none; width:100%;}
 	.split article{float:none; width:100%; padding:10% 5%;}
 }
+
