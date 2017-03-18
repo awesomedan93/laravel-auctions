@@ -1,20 +1,22 @@
 @extends('frontend.layouts.default')
-@section('frontend.content')
-    <div class="content">
-        <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
-        <ul>
-            <li><a href="">Accelerated Auction Solutions</a></li>
-            <li><a href="">American Auction Associates</a></li>
-            <li><a href="">Amp Liquidity Consultants</a></li>
-            <li><a href="">Atlanta Auction Company</a></li>
-            <li><a href="">Accelerated Auction Solutions</a></li>
-            <li><a href="">American Auction Associates</a></li>
-            <li><a href="">Amp Liquidity Consultants</a></li>
-            <li><a href="">Atlanta Auction Company</a></li>
-            <li><a href="">Accelerated Auction Solutions</a></li>
-            <li><a href="">American Auction Associates</a></li>
-            <li><a href="">Amp Liquidity Consultants</a></li>
-            <li><a href="">Atlanta Auction Company</a></li>
-        </ul>
+@section('content')
+    <div class="wrapper row3">
+        <main class="hoc container clear">
+            <!-- main body -->
+
+            <div class="content">
+                <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
+                <ul>
+                    @foreach($auctioneerHouses as $auctioneerHouse)
+                        <li><a href="{{ URL("/auctioneers-houses/$auctioneerHouse->id") }}">{{ $auctioneerHouse->name }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+
+        <!-- / main body -->
+            <div class="clear"></div>
+        </main>
     </div>
-@stop
+
+
+@endsection

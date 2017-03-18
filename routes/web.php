@@ -6,15 +6,11 @@ Route::get('/', function () {
     return view('frontend/pages/home');
 });
 
-Route::get('/auctioneers', function () {
+Route::get('/auctioneers', 'AuctioneersController@showAll');
+Route::get('/auctioneers/{id}', 'AuctioneersController@show');
 
-    return view('frontend/pages/auctioneers');
-});
-
-Route::get('/auctioneers-houses', function () {
-
-    return view('frontend/pages/auctioneers-houses');
-});
+Route::get('/auctioneers-houses', 'AuctioneersHousesController@showAll');
+Route::get('/auctioneers-houses/{id}', 'AuctioneersHousesController@show');
 
 Route::get('/contact', function () {
 
@@ -32,8 +28,7 @@ Route::get('/home', function () {
 
 Route::get('/dashboard/home', 'HomeController@index');
 
-Route::get('/dashboard/auctioneers-houses', 'AuctioneersHousesController@index');
-
 Auth::routes();
 
 Route::resource('/dashboard/auctioneers', 'AuctioneersController');
+Route::resource('/dashboard/auctioneer-houses', 'AuctioneersHousesController');

@@ -31,8 +31,8 @@
 
             <ul class="clear">
                 <li class="{{ ((Request::is('/')) ? 'active' : ' ') }}"><a href="/">Home</a></li>
-                <li class="{{ ((Request::is('auctioneers')) ? 'active' : ' ') }}"><a href="/auctioneers">Auctioneers</a></li>
-                <li class="{{ ((Request::is('auctioneers-houses')) ? 'active' : ' ') }}"><a href="/auctioneers-houses">Auctioners Houses</a></li>
+                <li class="{{ ((Request::segment(1) == 'auctioneers') ? 'active' : ' ') }}"><a href="/auctioneers">Auctioneers</a></li>
+                <li class="{{ ((Request::segment(1) == 'auctioneers-houses') ? 'active' : ' ') }}"><a href="/auctioneers-houses">Auctioners Houses</a></li>
                 <li class="{{ ((Request::is('contact')) ? 'active' : ' ') }}"><a href="/contact">Contact US</a></li>
             </ul>
 

@@ -14,6 +14,17 @@ class AuctioneersController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Show all auctioneers on frontend
+     */
+    public function showAll()
+    {
+
+        $auctioneers = Auctioneer::all();
+
+        return view('frontend.pages.auctioneers')->with('auctioneers', $auctioneers);
+    }
+
     public function index()
     {
         $auctioneers = Auctioneer::all();
@@ -42,7 +53,9 @@ class AuctioneersController extends Controller
 
     public function show($id)
     {
-        //
+        $auctioneer = Auctioneer::findOrFail($id);
+
+        return view('frontend.pages.auctioneer')->with('auctioneer',$auctioneer);
     }
 
     public function edit($id)

@@ -26,7 +26,7 @@
                         <!-- The user image in the navbar-->
                         <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -34,25 +34,11 @@
                             <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{ Auth::user()->email }} <br >
+                                {{ Auth::user()->name }}
                             </p>
                         </li>
-                        <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </li>
+
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
@@ -81,7 +67,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li {{ ((Request::is('dashboard/home')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/home') }}"><i class="fa fa-link"></i> <span>Home</span></a></li>
             <li {{ ((Request::is('dashboard/auctioneers')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers') }}"><i class="fa fa-link"></i> <span>Auctioneers</span></a></li>
-            <li {{ ((Request::is('dashboard/auctioneers-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers-houses') }}"><i class="fa fa-link"></i> <span>Auctioneers Houses</span></a></li>
+            <li {{ ((Request::is('dashboard/auctioneer-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneer-houses') }}"><i class="fa fa-link"></i> <span>Auctioneers Houses</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

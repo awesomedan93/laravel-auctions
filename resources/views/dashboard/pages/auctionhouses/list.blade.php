@@ -11,11 +11,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Auctioneers
+                Auctioneers Houses
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Auctioneers</a></li>
-                <li class="active">Show all auctioneers</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Auctioneers Houses</a></li>
+                <li class="active">Show all auctioneers houses</li>
             </ol>
         </section>
 
@@ -26,8 +26,8 @@
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Auctioneers list</h3>
-                            <a href="{{ route('auctioneers.create') }}" role="button" class="btn btn-success btn-md pull-right">Create</a>
+                            <h3 class="box-title">Auctioneers houses list</h3>
+                            <a href="{{ route('auctioneer-houses.create') }}" role="button" class="btn btn-success btn-md pull-right">Create</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -44,20 +44,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($auctioneers as $auctioneer)
+                                @foreach($auctioneerHouses as $auctioneerHouse)
                                     <tr>
-                                        <td>{{ $auctioneer->id }}</td>
-                                        <td>{{ $auctioneer->name }}</td>
-                                        <td>{{ $auctioneer->address }}</td>
-                                        <td>{{ $auctioneer->phone }}</td>
-                                        <td>{{ $auctioneer->email }}</td>
-                                        <td>{{ $auctioneer->created_at }}</td>
+                                        <td>{{ $auctioneerHouse->id }}</td>
+                                        <td>{{ $auctioneerHouse->name }}</td>
+                                        <td>{{ $auctioneerHouse->address }}</td>
+                                        <td>{{ $auctioneerHouse->phone }}</td>
+                                        <td>{{ $auctioneerHouse->email }}</td>
+                                        <td>{{ $auctioneerHouse->created_at }}</td>
                                         <td>
-                                            <a href="{{ url("/auctioneers/$auctioneer->id") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
-                                            <a href="{{ URL::action('AuctioneersController@edit', [$auctioneer->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
+                                            <a href="{{ url("/auctioneer-house/$auctioneerHouse->id") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
+                                            <a href="{{ URL::action('AuctioneersHousesController@edit', [$auctioneerHouse->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
-                                            {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
-                                                <button type="submit" id="button-delete-auctioneer" class="btn btn-danger btn-xs">Delete</button>
+                                            {{ Form::open(['route' => ['auctioneer-houses.destroy', $auctioneerHouse->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
+                                            <button type="submit" id="button-delete-auctioneer" class="btn btn-danger btn-xs">Delete</button>
                                             {{ Form::close() }}
 
                                         </td>

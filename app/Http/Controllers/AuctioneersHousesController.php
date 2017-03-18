@@ -3,8 +3,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Models\AuctioneersHouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class HomeController
@@ -12,24 +13,81 @@ use Illuminate\Http\Request;
  */
 class AuctioneersHousesController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return Response
+     * Show all auctioneers on frontend
      */
-    public function index()
+    public function showAll()
     {
 
-        return view('dashboard.pages.auctioneers-houses');
+        $auctioneerHouses = AuctioneersHouse::all();
+
+        return view('frontend.pages.auctioneers-houses')->with('auctioneerHouses', $auctioneerHouses);
+    }
+
+    public function index()
+    {
+        $auctioneerHouses = AuctioneersHouse::all();
+
+        return view('dashboard.pages.auctionhouses.list')->with('auctioneerHouses', $auctioneerHouses);
+    }
+
+    public function create()
+    {
+        return view('dashboard.pages.auctionhouses.create');
+    }
+
+    public function store(Request $request)
+    {
+        $inputData = $request->all();
+        $inputData['user_id'] = Auth::user()->id;
+
+        $client = new AuctioneersHouse();
+        $client->fill($inputData);
+        $saved = $client->save();
+
+        if($saved){
+            return redirect()->route('auctioneer-houses.index');
+        }
+    }
+
+    public function show($id)
+    {
+        $auctioneerHouse = AuctioneersHouse::findOrFail($id);
+
+        return view('frontend.pages.auctioneer-house')->with('auctioneerHouse',$auctioneerHouse);
+    }
+
+    public function edit($id)
+    {
+        $auctioneerHouse = AuctioneersHouse::find($id);
+
+        return view('dashboard.pages.auctionhouses.edit')->with('auctioneerHouse',$auctioneerHouse);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $inputData = $request->all();
+        $inputData['user_id'] = Auth::user()->id;
+
+        $updated = AuctioneersHouse::find($id)->update($inputData);
+
+        if($updated){
+            return redirect()->route('auctioneer-houses.index');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $deleted = AuctioneersHouse::find($id)->delete();
+
+        if($deleted){
+            return redirect()->route('auctioneer-houses.index');
+        }
     }
 }

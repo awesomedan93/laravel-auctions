@@ -7,16 +7,7 @@
 
 @include('frontend.includes.header')
 
-<div class="wrapper row3">
-    <main class="hoc container clear">
-        <!-- main body -->
-
     @yield('content')
-
-    <!-- / main body -->
-        <div class="clear"></div>
-    </main>
-</div>
 
 @include('frontend.includes.footer')
 

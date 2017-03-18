@@ -6,12 +6,7 @@
 
             <div class="content">
 
-                <h1>Auctioneers & Auction Companies in Atlanta, GA</h1>
-                <ul>
-                    @foreach($auctioneers as $auctioneer)
-                        <li><a href="{{ URL("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></li>
-                    @endforeach
-                </ul>
+                <h1>404 Not found</h1>
 
             </div>
 
@@ -19,6 +14,5 @@
             <div class="clear"></div>
         </main>
     </div>
-
 
 @endsection
