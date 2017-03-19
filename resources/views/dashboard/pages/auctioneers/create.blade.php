@@ -7,13 +7,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                General Form Elements
-                <small>Preview</small>
+                Add auctioneer
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">Auctioneers</a></li>
-                <li class="active">Add new auctioneer</li>
+                <li class="active">Add new</li>
             </ol>
         </section>
 
@@ -21,14 +20,14 @@
         <section class="content">
             <div class="row">
                 <!-- form start -->
-                <form action="{{ route('auctioneers.store') }}" method="POST" role="form">
+                <form action="{{ route('auctioneers.store') }}" method="POST" role="form" id="auctioneers-form">
                 <!-- left column -->
                 <div class="col-md-6">
 
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Auctioneer Information</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -65,7 +64,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Location</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -106,6 +105,22 @@
 @endsection
 @section('custom-footer-js')
     <script>
+
+        $('#auctioneers-form').on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        $("#address").keyup(function(event){
+            if(event.keyCode == 13){
+                codeAddress();
+            }
+        });
+    </script>
+    <script>
         var geocoder;
         var map;
         var marker = null;
@@ -118,8 +133,28 @@
                 center: latlng
             }
             map = new google.maps.Map(document.getElementById('dashboard-map'), mapOptions);
+
+            google.maps.event.addListener(map, 'click', function(event) {
+                //If marker is already added change position on click
+                if(marker && marker.setPosition){
+                    window.marker.setPosition(event.latLng);
+                //Else place marker
+                } else {
+                    placeMarker(event.latLng);
+                }
+
+            });
+
+            function placeMarker(location) {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    draggable:true
+                });
+            }
         }
 
+        //Google maps geocode add marker by address
         function codeAddress() {
             var address = document.getElementById('address').value;
             var loc=[];
@@ -132,7 +167,7 @@
 
                         window.marker.setPosition(results[0].geometry.location);
                     }else{
-                        console.log('marker dosent exti create one');
+
                         marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
