@@ -57,7 +57,7 @@
                                             <a href="{{ URL::action('AuctioneersController@edit', [$auctioneer->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
                                             {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
-                                                <button type="submit" id="button-delete-auctioneer" class="btn btn-danger btn-xs">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-xs button-delete-auctioneer">Delete</button>
                                             {{ Form::close() }}
 
                                         </td>
@@ -103,7 +103,7 @@
     </script>
     <script>
 
-        $("#button-delete-auctioneer").click(function(e){
+        $(".button-delete-auctioneer").click(function(e){
             e.preventDefault();
             swal({
                     title: "Are you sure?",

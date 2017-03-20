@@ -19,14 +19,7 @@ Route::get('/contact', function () {
 
 //DASHBOARD ROUTES
 
-Route::auth();
-
-//Disable adminLte default routes
-Route::get('/home', function () {
-    abort(404);
-});
-
-Route::get('/dashboard/home', 'HomeController@index');
+Route::get('/dashboard', 'HomeController@index');
 
 Auth::routes();
 

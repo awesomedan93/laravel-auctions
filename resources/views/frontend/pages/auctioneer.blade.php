@@ -17,7 +17,7 @@
 
             <div class="content">
 
-                <h1>Auctioneers & Auction Companies in Atlanta, GA</h1>
+                <h1>{{ $auctioneer->name }}</h1>
 
                 <div class="left-block">
                     <p>

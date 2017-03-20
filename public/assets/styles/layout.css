@@ -454,6 +454,9 @@ table a, #comments a{background-color:inherit;}
 		height: 400px;
 		width: 100%;
 	}
+	.responsive-column {
+		display:none;
+	}
 }
 
 
