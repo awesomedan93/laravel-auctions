@@ -9,7 +9,7 @@
                 <h1>Auctioneers & Auction Companies in Atlanta, GA</h1>
                 <ul>
                     @foreach($auctioneers as $auctioneer)
-                        <li><a href="{{ URL("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></li>
+                        <li><a href="{{ url("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></li>
                     @endforeach
                 </ul>
 

@@ -39,6 +39,12 @@ class AuctioneersController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email'
+        ]);
+
         $inputData = $request->all();
         $inputData['user_id'] = Auth::user()->id;
 
@@ -67,6 +73,11 @@ class AuctioneersController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email'
+        ]);
 
         $inputData = $request->all();
         $inputData['user_id'] = Auth::user()->id;

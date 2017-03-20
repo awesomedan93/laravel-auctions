@@ -18,12 +18,12 @@ class CreateAuctioneersTable extends Migration
 
             $table->increments('id');
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

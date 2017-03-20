@@ -14,6 +14,16 @@
                 <li><a href="#">Auctioneers</a></li>
                 <li class="active">Add new</li>
             </ol>
+            <br>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <!-- Main content -->
@@ -73,8 +83,8 @@
 
                                 <div class="input-group">
                                     <input type="text" name="address" id="address" placeholder="Address" class="form-control">
-                                    <input type="hidden" name="lat" id="lat" value="0">
-                                    <input type="hidden" name="lng" id="lng" value="0">
+                                    <input type="hidden" name="lat" id="lat" value="">
+                                    <input type="hidden" name="lng" id="lng" value="">
 
                                     <span class="input-group-btn">
                                       <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
@@ -138,11 +148,12 @@
                 //If marker is already added change position on click
                 if(marker && marker.setPosition){
                     window.marker.setPosition(event.latLng);
-                //Else place marker
+                    //Else place marker
                 } else {
-                    placeMarker(event.latLng);
+                    marker = placeMarker(event.latLng);
                 }
-
+                document.getElementById("lng").value = event.latLng.lng();
+                document.getElementById("lat").value = event.latLng.lat();
             });
 
             function placeMarker(location) {
@@ -151,10 +162,15 @@
                     map: map,
                     draggable:true
                 });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+
+                    document.getElementById("lng").value = this.getPosition().lng();
+                    document.getElementById("lat").value = this.getPosition().lat();
+                });
+                return marker;
             }
         }
 
-        //Google maps geocode add marker by address
         function codeAddress() {
             var address = document.getElementById('address').value;
             var loc=[];
@@ -164,10 +180,9 @@
                     map.setCenter(results[0].geometry.location);
 
                     if(marker && marker.setPosition){
-
                         window.marker.setPosition(results[0].geometry.location);
-                    }else{
 
+                    }else{
                         marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
@@ -175,7 +190,10 @@
                         });
                     }
 
+                    document.getElementById("lng").value = results[0].geometry.location.lng();
+                    document.getElementById("lat").value = results[0].geometry.location.lat();
                     google.maps.event.addListener(marker, 'dragend', function (event) {
+
                         document.getElementById("lng").value = this.getPosition().lng();
                         document.getElementById("lat").value = this.getPosition().lat();
                     });
@@ -187,7 +205,6 @@
                 }
             });
         }
-
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A&callback=initialize">

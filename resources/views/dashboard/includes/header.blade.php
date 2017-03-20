@@ -42,10 +42,20 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" class="btn btn-default btn-flat disabled">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                {!! Form::open([
+                                    'route' => 'logout',
+                                    'name' => 'logout-form',
+                                    'id' => 'logout-form',
+                                ]) !!}
+                                {!! Form::button('Log Out', [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-default btn-flat'
+                                ]) !!}
+                                {!! Form::close() !!}
+
                             </div>
                         </li>
                     </ul>

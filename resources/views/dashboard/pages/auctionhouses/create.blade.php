@@ -14,6 +14,16 @@
                 <li><a href="#">Auctioneers Houses</a></li>
                 <li class="active">Add new</li>
             </ol>
+            <br>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <!-- Main content -->
@@ -73,8 +83,8 @@
 
                                     <div class="input-group">
                                         <input type="text" name="address" id="address" placeholder="Address" class="form-control">
-                                        <input type="hidden" name="lat" id="lat" value="0">
-                                        <input type="hidden" name="lng" id="lng" value="0">
+                                        <input type="hidden" name="lat" id="lat" value="">
+                                        <input type="hidden" name="lng" id="lng" value="">
 
                                         <span class="input-group-btn">
                                       <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
@@ -105,22 +115,6 @@
 @endsection
 @section('custom-footer-js')
     <script>
-
-        $('#auctioneers-form').on('keyup keypress', function(e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        $("#address").keyup(function(event){
-            if(event.keyCode == 13){
-                codeAddress();
-            }
-        });
-    </script>
-    <script>
         var geocoder;
         var map;
         var marker = null;
@@ -140,9 +134,10 @@
                     window.marker.setPosition(event.latLng);
                     //Else place marker
                 } else {
-                    placeMarker(event.latLng);
+                    marker = placeMarker(event.latLng);
                 }
-
+                document.getElementById("lng").value = event.latLng.lng();
+                document.getElementById("lat").value = event.latLng.lat();
             });
 
             function placeMarker(location) {
@@ -151,6 +146,12 @@
                     map: map,
                     draggable:true
                 });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+
+                    document.getElementById("lng").value = this.getPosition().lng();
+                    document.getElementById("lat").value = this.getPosition().lat();
+                });
+                return marker;
             }
         }
 
@@ -163,10 +164,9 @@
                     map.setCenter(results[0].geometry.location);
 
                     if(marker && marker.setPosition){
-
                         window.marker.setPosition(results[0].geometry.location);
-                    }else{
 
+                    }else{
                         marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
@@ -174,7 +174,10 @@
                         });
                     }
 
+                    document.getElementById("lng").value = results[0].geometry.location.lng();
+                    document.getElementById("lat").value = results[0].geometry.location.lat();
                     google.maps.event.addListener(marker, 'dragend', function (event) {
+
                         document.getElementById("lng").value = this.getPosition().lng();
                         document.getElementById("lat").value = this.getPosition().lat();
                     });
@@ -186,7 +189,6 @@
                 }
             });
         }
-
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A&callback=initialize">

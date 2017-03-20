@@ -14,6 +14,16 @@
                 <li><a href="#">Auctioneers</a></li>
                 <li class="active">Edit Auctioneer</li>
             </ol>
+            <br>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <!-- Main content -->
@@ -113,26 +123,65 @@
                 return false;
             }
         });
-
-        $("#address").keyup(function(event){
-            if(event.keyCode == 13){
-                codeAddress();
-            }
-        });
     </script>
     <script>
+
         var geocoder;
         var map;
         var marker = null;
+        var mapOptions;
 
         function initialize() {
+
             geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
-            var mapOptions = {
-                zoom: 8,
-                center: latlng
+
+            var inputLat = document.getElementById("lat").value;
+            var inputLng = document.getElementById("lng").value;
+
+            if((inputLat && inputLng) != ''){
+                mapOptions = {
+                    zoom: 15,
+                    center: new google.maps.LatLng(inputLat, inputLng)
+                }
+            }else{
+                mapOptions = {
+                    zoom: 4,
+                    center: new google.maps.LatLng(38.850033, -93.6500523)
+                }
             }
+
             map = new google.maps.Map(document.getElementById('dashboard-map'), mapOptions);
+
+            google.maps.event.addListener(map, 'click', function(event) {
+                //If marker is already added change position on click
+                if(marker && marker.setPosition){
+                    window.marker.setPosition(event.latLng);
+                    //Else place marker
+                } else {
+                    marker = placeMarker(event.latLng);
+                }
+                document.getElementById("lng").value = event.latLng.lng();
+                document.getElementById("lat").value = event.latLng.lat();
+            });
+
+            if((inputLat && inputLng) != ''){
+                placeMarker(new google.maps.LatLng( parseFloat(inputLat),parseFloat(inputLng)));
+            }
+
+            function placeMarker(location) {
+
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    draggable:true
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+
+                    document.getElementById("lng").value = this.getPosition().lng();
+                    document.getElementById("lat").value = this.getPosition().lat();
+                });
+                return marker;
+            }
         }
 
         function codeAddress() {
@@ -144,10 +193,9 @@
                     map.setCenter(results[0].geometry.location);
 
                     if(marker && marker.setPosition){
-
                         window.marker.setPosition(results[0].geometry.location);
-                    }else{
 
+                    }else{
                         marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
@@ -155,7 +203,10 @@
                         });
                     }
 
+                    document.getElementById("lng").value = results[0].geometry.location.lng();
+                    document.getElementById("lat").value = results[0].geometry.location.lat();
                     google.maps.event.addListener(marker, 'dragend', function (event) {
+
                         document.getElementById("lng").value = this.getPosition().lng();
                         document.getElementById("lat").value = this.getPosition().lat();
                     });
@@ -167,7 +218,6 @@
                 }
             });
         }
-
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A&callback=initialize">
