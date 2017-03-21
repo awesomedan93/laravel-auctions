@@ -30,9 +30,9 @@
 
             <ul class="clear">
                 <li class="{{ ((Request::is('/')) ? 'active' : ' ') }}"><a href="{{ asset('/') }}">Home</a></li>
-                <li class="{{ ((Request::segment(1) == 'auctioneers') ? 'active' : ' ') }}"><a href="/auctioneers">Auctioneers</a></li>
-                <li class="{{ ((Request::segment(1) == 'auction-houses') ? 'active' : ' ') }}"><a href="/auction-houses">Auction Houses</a></li>
-                <li class="{{ ((Request::is('contact')) ? 'active' : ' ') }}"><a href="/contact">Contact US</a></li>
+                <li class="{{ ((Request::segment(1) == 'auctioneers') ? 'active' : ' ') }}"><a href="{{ asset('auctioneers') }}">Auctioneers</a></li>
+                <li class="{{ ((Request::segment(1) == 'auction-houses') ? 'active' : ' ') }}"><a href="{{ asset('auction-houses') }}">Auction Houses</a></li>
+                <li class="{{ ((Request::is('contact')) ? 'active' : ' ') }}"><a href="{{ asset('contact') }}">Contact US</a></li>
             </ul>
 
         </nav>
