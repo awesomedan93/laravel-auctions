@@ -6,6 +6,8 @@
 
             <div class="content">
 
+                @include('frontend.partials.adsbygoogle')
+
                 <h3>Contact Us</h3>
                 <p>
                     If you are an auctioneer or have an auction house in the Atlanta area and would like your information added to our site, please send us an email with all of your business information. <a href="mailto:info@auctionsinatlanta.com">info@auctionsinatlanta.com</a>

@@ -5,16 +5,9 @@
             <!-- main body -->
 
             <div class="content">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Auctions in Atlanta responsive -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-1471799681191680"
-                     data-ad-slot="4230987934"
-                     data-ad-format="auto"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+
+                @include('frontend.partials.adsbygoogle')
+
                 <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
                 <ul class="no-padding">
                     <table>

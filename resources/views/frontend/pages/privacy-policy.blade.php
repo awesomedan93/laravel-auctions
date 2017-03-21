@@ -6,13 +6,10 @@
 
             <div class="content">
 
-                <h3>Contact Us</h3>
-                <p>
-                    If you are an auctioneer or have an auction house in the Atlanta area and would like your information added to our site, please send us an email with all of your business information. <a href="mailto:info@auctionsinatlanta.com">info@auctionsinatlanta.com</a>
-                </p>
+                @include('frontend.partials.adsbygoogle')
+
                 <div id="comments">
-                    <h2>Send an email</h2>
-                    Privacy Policy <br>
+                    <h2>Privacy Policy</h2>
                     <p>
                         If you require any more information or have any questions about our privacy policy, please feel free to contact us by email at info@auctionsinatlanta.com.
                     </p>

@@ -16,16 +16,9 @@
             <!-- main body -->
 
             <div class="content">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Auctions in Atlanta responsive -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-1471799681191680"
-                     data-ad-slot="4230987934"
-                     data-ad-format="auto"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+
+                @include('frontend.partials.adsbygoogle')
+
                 <h1>{{ $auctioneer->name }}</h1>
 
                 <div class="left-block">
@@ -44,16 +37,9 @@
                     <p>
                         <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
                     </p>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Auctions in Atlanta responsive -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-1471799681191680"
-                         data-ad-slot="4230987934"
-                         data-ad-format="auto"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+
+                    @include('frontend.partials.adsbygoogle')
+
                 </div>
 
                 <div class="right-block">
