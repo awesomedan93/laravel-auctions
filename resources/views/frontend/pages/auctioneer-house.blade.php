@@ -63,10 +63,10 @@
         var map;
         function initialize() {
             geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
+
             var mapOptions = {
-                zoom: 8,
-                center: latlng
+                zoom: 14,
+                center: new google.maps.LatLng(33.79398504493932, -84.39353942871094)
             }
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
 

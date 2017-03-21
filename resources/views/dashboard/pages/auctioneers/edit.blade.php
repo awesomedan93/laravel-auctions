@@ -151,8 +151,8 @@
                 }
             }else{
                 mapOptions = {
-                    zoom: 4,
-                    center: new google.maps.LatLng(33.7489954, -84.3879824)
+                    zoom: 10,
+                    center: new google.maps.LatLng(33.79398504493932, -84.39353942871094)
                 }
             }
 
