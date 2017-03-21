@@ -11,6 +11,7 @@ class AuctioneersController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth', ['except'=>['show','showAll']]);
     }
 
     /**
@@ -90,10 +91,14 @@ class AuctioneersController extends Controller
 
     public function destroy($id)
     {
-        $deleted = Auctioneer::find($id)->delete();
+        try {
+            Auctioneer::find($id)->delete();
 
-        if($deleted){
-            return redirect()->route('auctioneers.index');
+            return response()->json('',200);
+        }
+        catch (\Exception $e) {
+
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 403 );
         }
     }
 }

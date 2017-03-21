@@ -9,14 +9,15 @@ Route::get('/', function () {
 Route::get('/auctioneers', 'AuctioneersController@showAll');
 Route::get('/auctioneers/{id}', 'AuctioneersController@show');
 
-Route::get('/auctioneers-houses', 'AuctioneersHousesController@showAll');
-Route::get('/auctioneers-houses/{id}', 'AuctioneersHousesController@show');
+Route::get('/auction-houses', 'AuctionHousesController@showAll');
+Route::get('/auction-houses/{id}', 'AuctionHousesController@show');
 
 Route::get('/contact', function () {
-
     return view('frontend/pages/contact');
 });
-
+Route::get('/policy', function () {
+    return view('frontend/pages/privacy-policy');
+});
 //DASHBOARD ROUTES
 
 Route::get('/dashboard', 'HomeController@index');
@@ -24,4 +25,4 @@ Route::get('/dashboard', 'HomeController@index');
 Auth::routes();
 
 Route::resource('/dashboard/auctioneers', 'AuctioneersController');
-Route::resource('/dashboard/auctioneer-houses', 'AuctioneersHousesController');
+Route::resource('/dashboard/auction-houses', 'AuctionHousesController');

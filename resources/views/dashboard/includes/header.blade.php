@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="{{ asset('/') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>D</span>
         <!-- logo for regular state and mobile devices -->
@@ -45,15 +45,9 @@
                                 <a href="#" class="btn btn-default btn-flat disabled">Profile</a>
                             </div>
                             <div class="pull-right">
-                                {!! Form::open([
-                                    'route' => 'logout',
-                                    'name' => 'logout-form',
-                                    'id' => 'logout-form',
-                                ]) !!}
-                                {!! Form::button('Log Out', [
-                                    'type' => 'submit',
-                                    'class' => 'btn btn-default btn-flat'
-                                ]) !!}
+                                {!! Form::open(['route' => 'logout','name' => 'logout-form','id' => 'logout-form',]) !!}
+                                {{ csrf_field() }}
+                                {!! Form::button('Log Out', ['type' => 'submit','class' => 'btn btn-default btn-flat']) !!}
                                 {!! Form::close() !!}
 
                             </div>
@@ -75,9 +69,8 @@
         <ul class="sidebar-menu">
             <li class="header">GENERAL MENU</li>
             <!-- Optionally, you can add icons to the links -->
-            <li {{ ((Request::is('dashboard/home')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/home') }}"><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
             <li {{ ((Request::is('dashboard/auctioneers')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers') }}"><i class="glyphicon glyphicon-usd"></i> <span>Auctioneers</span></a></li>
-            <li {{ ((Request::is('dashboard/auctioneer-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneer-houses') }}"><i class="fa fa-group"></i> <span>Auctioneers Houses</span></a></li>
+            <li {{ ((Request::is('dashboard/auction-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auction-houses') }}"><i class="fa fa-group"></i> <span>Auction Houses</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

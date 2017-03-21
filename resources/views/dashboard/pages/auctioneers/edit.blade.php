@@ -66,7 +66,7 @@
 
                     </div>
                     <!-- /.box -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 <!--/.col (left) -->
 
@@ -83,9 +83,9 @@
                                 <label for="address">Address</label>
 
                                 <div class="input-group">
-                                    <input type="text" name="address" id="address" placeholder="Address" class="form-control">
-                                    <input type="hidden" name="lat" id="lat" value="0">
-                                    <input type="hidden" name="lng" id="lng" value="0">
+                                    <input type="text" name="address" id="address" value="{{ $auctioneer->address }}" placeholder="Address" class="form-control">
+                                    <input type="hidden" name="lat" id="lat" value="{{ $auctioneer->lat }}">
+                                    <input type="hidden" name="lng" id="lng" value="{{ $auctioneer->lng }}">
 
                                     <span class="input-group-btn">
                                       <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
@@ -123,6 +123,12 @@
                 return false;
             }
         });
+
+        $("#address").keyup(function(event){
+            if(event.keyCode == 13){
+                codeAddress();
+            }
+        });
     </script>
     <script>
 
@@ -146,7 +152,7 @@
             }else{
                 mapOptions = {
                     zoom: 4,
-                    center: new google.maps.LatLng(38.850033, -93.6500523)
+                    center: new google.maps.LatLng(33.7489954, -84.3879824)
                 }
             }
 

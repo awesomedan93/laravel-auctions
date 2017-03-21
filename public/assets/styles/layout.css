@@ -48,7 +48,7 @@
 
 /* Content Area
 --------------------------------------------------------------------------------------------------------------- */
-.container{padding:70px 0;}
+.container{padding:20px 0;}
 
 /* Content */
 .container .content{}
@@ -122,7 +122,7 @@
 
 /* Footer
 --------------------------------------------------------------------------------------------------------------- */
-#footer{padding:70px 0;}
+#footer{padding-top:50px; padding-bottom: 30px;}
 
 #footer .heading{margin-bottom:50px; font-size:1.2rem;}
 
@@ -375,11 +375,27 @@ table a, #comments a{background-color:inherit;}
 	float: right;
 }
 #map {
-	height: 400px;
-	width: 350px;
+	height: 410px;
+	width: 500px;
+	float:right;
 }
 .hidden {
 	display:none;
+}
+.no-padding {
+	padding:0px !important;
+}
+.column-address {
+	width:25%;
+}
+.adsbygoogle {
+	margin-bottom:20px;
+}
+.no-top-padding {
+	padding-top:0px!important;
+}
+.inherit-color {
+	color:inherit;
 }
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -462,6 +478,9 @@ table a, #comments a{background-color:inherit;}
 
 @media screen and (max-width:450px){
 	#topbar ul li{margin-bottom:2px; padding-right:0; border-right:none;}
+	.responsive-column-mid {
+		display:none;
+	}
 }
 
 
@@ -481,5 +500,7 @@ table a, #comments a{background-color:inherit;}
 
 	.hoc.split{max-width:none; width:100%;}
 	.split article{float:none; width:100%; padding:10% 5%;}
+	.first{margin-left:0; float:none; width:100%; text-align: center;}
+	.second{margin-left:0; float:none; width:100%; text-align: center;}
 }
 

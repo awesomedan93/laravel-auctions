@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.pages.home');
+        //return view('dashboard.pages.home');
+        return redirect('/dashboard/auctioneers');
     }
 }

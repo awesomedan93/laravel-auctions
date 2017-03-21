@@ -37,10 +37,10 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Phone</th>
+                                    <th class="no-sort">Phone</th>
                                     <th>Email</th>
                                     <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th class="no-sort">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +57,7 @@
                                             <a href="{{ URL::action('AuctioneersController@edit', [$auctioneer->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
                                             {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
-                                                <button type="submit" class="btn btn-danger btn-xs button-delete-auctioneer">Delete</button>
+                                                <button type="submit" data-id="{{ $auctioneer->id }}" class="btn btn-danger btn-xs button-delete-auctioneer">Delete</button>
                                             {{ Form::close() }}
 
                                         </td>
@@ -98,12 +98,24 @@
     <!-- page script -->
     <script>
         $(function () {
-            $('#example1').DataTable();
+            $('#example1').DataTable({
+                "columnDefs": [ {
+                    "targets"  : 'no-sort',
+                    "orderable": false,
+                }]
+            });
         });
     </script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $(".button-delete-auctioneer").click(function(e){
+            var id = $(this).data('id');
+            var row = $(this).closest('tr');
             e.preventDefault();
             swal({
                     title: "Are you sure?",
@@ -118,10 +130,22 @@
                 },
                 function(isConfirm){
                     if (isConfirm) {
-                        swal("Deleted!", "The auctioneer has been deleted.", "success");
-                        setTimeout(function() {
-                            $('#auctioneer-form-delete').submit();
-                        }, 2000);
+
+                        var url = "{{ asset('dashboard/auctioneers') }}/" + id;
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: url,
+                            success: function(data){
+                                swal("Deleted!", "The auctioneer has been deleted.", "success");
+                                $(row).remove();
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
                     } else {
                         swal("Cancelled", "", "error");
                     }

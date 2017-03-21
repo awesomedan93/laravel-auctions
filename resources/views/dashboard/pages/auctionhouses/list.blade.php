@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Auctioneers houses list</h3>
-                            <a href="{{ route('auctioneer-houses.create') }}" role="button" class="btn btn-success btn-md pull-right">Create</a>
+                            <a href="{{ route('auction-houses.create') }}" role="button" class="btn btn-success btn-md pull-right">Create</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -37,27 +37,27 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Phone</th>
+                                    <th class="no-sort">Phone</th>
                                     <th>Email</th>
                                     <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th class="no-sort">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($auctioneerHouses as $auctioneerHouse)
+                                @foreach($auctionHouses as $auctionHouse)
                                     <tr>
-                                        <td>{{ $auctioneerHouse->id }}</td>
-                                        <td>{{ $auctioneerHouse->name }}</td>
-                                        <td>{{ $auctioneerHouse->address }}</td>
-                                        <td>{{ $auctioneerHouse->phone }}</td>
-                                        <td>{{ $auctioneerHouse->email }}</td>
-                                        <td>{{ $auctioneerHouse->created_at }}</td>
+                                        <td>{{ $auctionHouse->id }}</td>
+                                        <td>{{ $auctionHouse->name }}</td>
+                                        <td>{{ $auctionHouse->address }}</td>
+                                        <td>{{ $auctionHouse->phone }}</td>
+                                        <td>{{ $auctionHouse->email }}</td>
+                                        <td>{{ $auctionHouse->created_at }}</td>
                                         <td>
-                                            <a href="{{ url("/auctioneer-house/$auctioneerHouse->id") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
-                                            <a href="{{ URL::action('AuctioneersHousesController@edit', [$auctioneerHouse->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
+                                            <a href="{{ url("/auction-houses/$auctionHouse->id") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
+                                            <a href="{{ URL::action('AuctionHousesController@edit', [$auctionHouse->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
-                                            {{ Form::open(['route' => ['auctioneer-houses.destroy', $auctioneerHouse->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
-                                            <button type="submit" class="btn btn-danger btn-xs button-delete-auctioneer">Delete</button>
+                                            {{ Form::open(['route' => ['auction-houses.destroy', $auctionHouse->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
+                                            <button type="submit" data-id="{{ $auctionHouse->id }}" class="btn btn-danger btn-xs button-delete-auctioneer">Delete</button>
                                             {{ Form::close() }}
 
                                         </td>
@@ -98,12 +98,25 @@
     <!-- page script -->
     <script>
         $(function () {
-            $('#example1').DataTable();
+            $('#example1').DataTable({
+                "columnDefs": [ {
+                    "targets"  : 'no-sort',
+                    "orderable": false,
+                }]
+            });
         });
     </script>
     <script>
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(".button-delete-auctioneer").click(function(e){
+            var id = $(this).data('id');
+            var row = $(this).closest('tr');
             e.preventDefault();
             swal({
                     title: "Are you sure?",
@@ -118,10 +131,22 @@
                 },
                 function(isConfirm){
                     if (isConfirm) {
-                        swal("Deleted!", "The auctioneer has been deleted.", "success");
-                        setTimeout(function() {
-                            $('#auctioneer-form-delete').submit();
-                        }, 2000);
+
+                        var url = "{{ asset('dashboard/auction-houses') }}/" + id;
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: url,
+                            success: function(data){
+                                swal("Deleted!", "The auctioneer has been deleted.", "success");
+                                $(row).remove();
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
                     } else {
                         swal("Cancelled", "", "error");
                     }

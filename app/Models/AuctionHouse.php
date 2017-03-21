@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class AuctioneersHouse extends Authenticatable
+class AuctionHouse extends Authenticatable
 {
     use Notifiable;
 

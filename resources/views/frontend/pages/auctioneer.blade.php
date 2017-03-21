@@ -12,11 +12,20 @@
     </div>
 
     <div class="wrapper row3">
-        <main class="hoc container clear">
+        <main class="hoc container clear no-top-padding">
             <!-- main body -->
 
             <div class="content">
-
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Auctions in Atlanta responsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1471799681191680"
+                     data-ad-slot="4230987934"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
                 <h1>{{ $auctioneer->name }}</h1>
 
                 <div class="left-block">
@@ -35,7 +44,16 @@
                     <p>
                         <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
                     </p>
-
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Auctions in Atlanta responsive -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-1471799681191680"
+                         data-ad-slot="4230987934"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
 
                 <div class="right-block">

@@ -30,7 +30,7 @@
         <section class="content">
             <div class="row">
                 <!-- form start -->
-                <form action="{{ route('auctioneer-houses.store') }}" method="POST" role="form" id="auctioneers-form">
+                <form action="{{ route('auction-houses.store') }}" method="POST" role="form" id="auctioneers-form">
                     <!-- left column -->
                     <div class="col-md-6">
 
@@ -121,7 +121,7 @@
 
         function initialize() {
             geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var latlng = new google.maps.LatLng(33.7489954, -84.3879824);
             var mapOptions = {
                 zoom: 8,
                 center: latlng

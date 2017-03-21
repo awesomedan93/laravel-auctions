@@ -7,12 +7,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Edit Auctioneer House
+                Edit Auction House
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">Auctioneers Houses</a></li>
-                <li class="active">Edit Auctioneer House</li>
+                <li class="active">Edit Auction House</li>
             </ol>
             <br>
             @if (count($errors) > 0)
@@ -30,7 +30,7 @@
         <section class="content">
             <div class="row">
                 <!-- form start -->
-            {{ Form::model($auctioneerHouse, ['method'=>'PATCH', 'route' => ['auctioneer-houses.update', $auctioneerHouse->id], 'id' => 'auctioneers-form']) }}
+            {{ Form::model($auctionHouse, ['method'=>'PATCH', 'route' => ['auction-houses.update', $auctionHouse->id], 'id' => 'auctioneers-form']) }}
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
@@ -44,19 +44,19 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" value="{{ $auctioneerHouse->name }}" id="name" placeholder="Enter name">
+                                    <input type="text" class="form-control" name="name" value="{{ $auctionHouse->name }}" id="name" placeholder="Enter name">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ $auctioneerHouse->phone }}" id="phone" placeholder="Phone">
+                                    <input type="text" class="form-control" name="phone" value="{{ $auctionHouse->phone }}" id="phone" placeholder="Phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" value="{{ $auctioneerHouse->email }}" id="email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" value="{{ $auctionHouse->email }}" id="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="website">Website</label>
-                                    <input type="text" class="form-control" name="website" value="{{ $auctioneerHouse->website }}" id="website" placeholder="Website">
+                                    <input type="text" class="form-control" name="website" value="{{ $auctionHouse->website }}" id="website" placeholder="Website">
                                 </div>
 
                             </div>
@@ -64,7 +64,7 @@
 
                     </div>
                     <!-- /.box -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 <!--/.col (left) -->
 
@@ -81,9 +81,9 @@
                                 <label for="address">Address</label>
 
                                 <div class="input-group">
-                                    <input type="text" name="address" id="address" placeholder="Address" class="form-control">
-                                    <input type="hidden" name="lat" id="lat" value="{{ $auctioneerHouse->lat }}">
-                                    <input type="hidden"  name="lng" id="lng" value="{{ $auctioneerHouse->lng }}">
+                                    <input type="text" name="address" id="address" value="{{ $auctionHouse->address }}" placeholder="Address" class="form-control">
+                                    <input type="hidden" name="lat" id="lat" value="{{ $auctionHouse->lat }}">
+                                    <input type="hidden"  name="lng" id="lng" value="{{ $auctionHouse->lng }}">
 
                                     <span class="input-group-btn">
                                       <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
@@ -150,7 +150,7 @@
             }else{
                 mapOptions = {
                     zoom: 4,
-                    center: new google.maps.LatLng(38.850033, -93.6500523)
+                    center: new google.maps.LatLng(41.850033, -87.6500523)
                 }
             }
 

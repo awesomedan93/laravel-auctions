@@ -91,7 +91,8 @@ address, article, aside, figcaption, figure, footer, header, main, nav, section{
 --------------------------------------------------------------------------------------------------------------- */
 .one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:inline-block; float:left; margin:0 0 0 3.06748466257669%; list-style:none;}
 
-.first{margin-left:0; clear:left;}
+.first{margin-left:0; float:left; clear:left; width:70%;}
+.second{margin-left:0; float:right; clear:right; width:25%;}
 
 .one_quarter{width:22.69938650306748%;}
 .one_third{width:31.28834355828221%;}

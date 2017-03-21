@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AuctioneersHouse;
+use App\Models\AuctionHouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Auth;
  * Class HomeController
  * @package App\Http\Controllers
  */
-class AuctioneersHousesController extends Controller
+class AuctionHousesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except'=>['show','showAll']]);
     }
 
     /**
@@ -23,17 +23,16 @@ class AuctioneersHousesController extends Controller
      */
     public function showAll()
     {
+        $auctionHouses = AuctionHouse::all();
 
-        $auctioneerHouses = AuctioneersHouse::all();
-
-        return view('frontend.pages.auctioneers-houses')->with('auctioneerHouses', $auctioneerHouses);
+        return view('frontend.pages.auction-houses')->with('auctionHouses', $auctionHouses);
     }
 
     public function index()
     {
-        $auctioneerHouses = AuctioneersHouse::all();
+        $auctionHouses = AuctionHouse::all();
 
-        return view('dashboard.pages.auctionhouses.list')->with('auctioneerHouses', $auctioneerHouses);
+        return view('dashboard.pages.auctionhouses.list')->with('auctionHouses', $auctionHouses);
     }
 
     public function create()
@@ -52,27 +51,27 @@ class AuctioneersHousesController extends Controller
         $inputData = $request->all();
         $inputData['user_id'] = Auth::user()->id;
 
-        $client = new AuctioneersHouse();
+        $client = new AuctionHouse();
         $client->fill($inputData);
         $saved = $client->save();
 
         if($saved){
-            return redirect()->route('auctioneer-houses.index');
+            return redirect()->route('auction-houses.index');
         }
     }
 
     public function show($id)
     {
-        $auctioneerHouse = AuctioneersHouse::findOrFail($id);
+        $auctionHouse = AuctionHouse::findOrFail($id);
 
-        return view('frontend.pages.auctioneer-house')->with('auctioneerHouse',$auctioneerHouse);
+        return view('frontend.pages.auctioneer-house')->with('auctionHouse',$auctionHouse);
     }
 
     public function edit($id)
     {
-        $auctioneerHouse = AuctioneersHouse::find($id);
+        $auctionHouse = AuctionHouse::find($id);
 
-        return view('dashboard.pages.auctionhouses.edit')->with('auctioneerHouse',$auctioneerHouse);
+        return view('dashboard.pages.auctionhouses.edit')->with('auctionHouse',$auctionHouse);
     }
 
     public function update(Request $request, $id)
@@ -84,21 +83,26 @@ class AuctioneersHousesController extends Controller
         ]);
 
         $inputData = $request->all();
+
         $inputData['user_id'] = Auth::user()->id;
 
-        $updated = AuctioneersHouse::find($id)->update($inputData);
+        $updated = AuctionHouse::find($id)->update($inputData);
 
         if($updated){
-            return redirect()->route('auctioneer-houses.index');
+            return redirect()->route('auction-houses.index');
         }
     }
 
     public function destroy($id)
     {
-        $deleted = AuctioneersHouse::find($id)->delete();
+        try {
+            AuctionHouse::find($id)->delete();
 
-        if($deleted){
-            return redirect()->route('auctioneer-houses.index');
+            return response()->json('',200);
+        }
+        catch (\Exception $e) {
+
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 403 );
         }
     }
 }

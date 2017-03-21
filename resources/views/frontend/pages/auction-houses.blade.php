@@ -15,7 +15,7 @@
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-                <h1>Auctioneers & Auction Companies in Atlanta, GA</h1>
+                <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
                 <ul class="no-padding">
                     <table>
                         <thead>
@@ -28,21 +28,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($auctioneers as $auctioneer)
+                        @foreach($auctionHouses as $auctionHouse)
 
                             <tr>
-                                <td><a href="{{ url("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></td>
-                                <td class="responsive-column">{{ $auctioneer->address }}</td>
-                                <td class="responsive-column"><a class="inherit-color" href="tel:{{ $auctioneer->phone }}">{{ $auctioneer->phone }}</a></td>
-                                <td class="responsive-column"><a class="inherit-color" href="mailto:{{ $auctioneer->email }}">{{ $auctioneer->email }}</a></td>
-                                <td class="responsive-column-mid"><a href="{{ url("/auctioneers/$auctioneer->id") }}">More Info</a></td>
+                                <td><a href="{{ url("/auction-houses/$auctionHouse->id") }}">{{ $auctionHouse->name }}</a></td>
+                                <td class="responsive-column column-address">{{ $auctionHouse->address }}</td>
+                                <td class="responsive-column">{{ $auctionHouse->phone }}</td>
+                                <td class="responsive-column">{{ $auctionHouse->email }}</td>
+                                <td class="responsive-column-mid"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">More Info</a></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
 
                 </ul>
-
             </div>
 
         <!-- / main body -->

@@ -137,9 +137,9 @@
 
         function initialize() {
             geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var latlng = new google.maps.LatLng(33.7489954, -84.3879824);
             var mapOptions = {
-                zoom: 8,
+                zoom: 10,
                 center: latlng
             }
             map = new google.maps.Map(document.getElementById('dashboard-map'), mapOptions);
