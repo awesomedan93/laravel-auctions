@@ -13,22 +13,22 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th class="column-name">Name</th>
                             <th class="responsive-column column-address">Address</th>
-                            <th class="responsive-column">Phone</th>
-                            <th class="responsive-column">Email</th>
-                            <th class="responsive-column-mid">More Info</th>
+                            <th class="responsive-column column-phone">Phone</th>
+                            <th class="responsive-column column-email">Email</th>
+                            <th class="responsive-column-mid column-info">More Info</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($auctioneers as $auctioneer)
 
                             <tr>
-                                <td><a href="{{ url("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></td>
-                                <td class="responsive-column">{{ $auctioneer->address }}</td>
-                                <td class="responsive-column"><a class="inherit-color" href="tel:{{ $auctioneer->phone }}">{{ $auctioneer->phone }}</a></td>
-                                <td class="responsive-column"><a class="inherit-color" href="mailto:{{ $auctioneer->email }}">{{ $auctioneer->email }}</a></td>
-                                <td class="responsive-column-mid"><a href="{{ url("/auctioneers/$auctioneer->id") }}">More Info</a></td>
+                                <td class="column-name"><a href="{{ url("/auctioneers/$auctioneer->id") }}">{{ $auctioneer->name }}</a></td>
+                                <td class="responsive-column column-address">{{ $auctioneer->address }}</td>
+                                <td class="responsive-column column-phone"><a class="inherit-color" href="tel:{{ $auctioneer->phone }}">{{ $auctioneer->phone }}</a></td>
+                                <td class="responsive-column column-email"><a class="inherit-color" href="mailto:{{ $auctioneer->email }}">{{ $auctioneer->email }}</a></td>
+                                <td class="responsive-column-mid column-info"><a href="{{ url("/auctioneers/$auctioneer->id") }}">More Info</a></td>
                             </tr>
                         @endforeach
                         </tbody>

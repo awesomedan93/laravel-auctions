@@ -13,22 +13,22 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th class="column-name">Name</th>
                             <th class="responsive-column column-address">Address</th>
-                            <th class="responsive-column">Phone</th>
-                            <th class="responsive-column">Email</th>
-                            <th class="responsive-column-mid">More Info</th>
+                            <th class="responsive-column column-phone">Phone</th>
+                            <th class="responsive-column column-email">Email</th>
+                            <th class="responsive-column-mid column-info">More Info</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($auctionHouses as $auctionHouse)
 
                             <tr>
-                                <td><a href="{{ url("/auction-houses/$auctionHouse->id") }}">{{ $auctionHouse->name }}</a></td>
+                                <td class="column-name"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">{{ $auctionHouse->name }}</a></td>
                                 <td class="responsive-column column-address">{{ $auctionHouse->address }}</td>
-                                <td class="responsive-column">{{ $auctionHouse->phone }}</td>
-                                <td class="responsive-column">{{ $auctionHouse->email }}</td>
-                                <td class="responsive-column-mid"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">More Info</a></td>
+                                <td class="responsive-column column-phone">{{ $auctionHouse->phone }}</td>
+                                <td class="responsive-column column-email">{{ $auctionHouse->email }}</td>
+                                <td class="responsive-column-mid column-info"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">More Info</a></td>
                             </tr>
                         @endforeach
                         </tbody>

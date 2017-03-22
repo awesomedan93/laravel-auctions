@@ -388,6 +388,20 @@ table a, #comments a{background-color:inherit;}
 .column-address {
 	width:25%;
 }
+.column-phone {
+	white-space: nowrap;
+}
+.column-email {
+	max-width: 240px;
+	word-wrap: break-word;
+}
+.column-info {
+	white-space: nowrap;
+	text-align: center;
+}
+.column-name {
+	width:28%;
+}
 .adsbygoogle {
 	margin-bottom:20px;
 }

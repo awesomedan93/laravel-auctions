@@ -41,15 +41,10 @@ class AuctioneersTableSeeder extends Seeder
             ['name'=>'The Dobbins Company','address'=>'1108 Old Chattahoochee Avenue Atlanta, GA 30318','phone'=>'404-352-2638','email'=>'info@dobbinscompany.com','website'=>'www.dobbinscompany.com','user_id'=>$userId],
             ['name'=>'Trader J\'s Auction','address'=>'131 Eaton Street Lawrenceville, GA 30046','phone'=>'678-481-0459','email'=>'traderj@bellsouth.net','user_id'=>$userId],
         ];
-        foreach ($auctioneers as $k=>$v){
-            factory(App\Models\Auctioneer::class)->create([
-                'name'=>$v['name'],
-                'address'=>$v['address'],
-                'phone'=>$v['phone'],
-                'email'=>$v['email'],
-                'website'=>$v['website'],
-                'user_id'=>$v['user_id']
-            ]);
+        foreach ($auctioneers as $key=>$value){
+
+            App\Models\Auctioneer::create($value);
+
         }
     }
 }
