@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 /webpack.mix.js
 /bower_components/
+/composer.lock
