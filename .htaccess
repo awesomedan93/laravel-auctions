@@ -2,7 +2,7 @@
 # Replace 'old' with your old folder name
 # Replace 'new' with your new folder name
 RewriteEngine on
-#RewriteRule ^/?american-auction-associates-in-smyrna-georgia.php([a-z/.]*)$ /auctioneers/2$1 [R=301,L]
+RewriteRule ^/?american-auction-associates-in-smyrna-georgia.php([a-z/.]*)$ /auctioneers/2$1 [R=301,L]
 
 
 <IfModule mod_rewrite.c>
