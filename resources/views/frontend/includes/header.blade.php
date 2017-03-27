@@ -23,6 +23,7 @@
         <div id="logo">
 
             <h1><a href="{{ asset('/') }}">Atlanta</a></h1>
+            <h2>www.AuctionsInAtlanta.com</h2>
             <p>Free Auctioneer & Auction Listings</p>
 
         </div>
