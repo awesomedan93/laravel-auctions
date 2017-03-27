@@ -1,6 +1,3 @@
-# Rename a directory and force visitors to the new name
-# Replace 'old' with your old folder name
-# Replace 'new' with your new folder name
 RewriteEngine on
 # Redirects for Auctioneers page
 RewriteRule ^/?accelerated-auction-solutions-in-chamblee-georgia.php([a-z/.]*)$ /auctioneers/1$1 [R=301,L]
