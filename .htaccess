@@ -123,11 +123,7 @@ RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
     RewriteRule ^/phoenix-store-fixtures-&-auctions-in-conyers-ga.php$ /auction-houses/11 [R=301,L]
 </IfModule>
-RewriteCond %{HTTP_HOST} ^auctionsinatlanta\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.auctionsinatlanta\.com$
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^old\-url\.php$ "http\:\/\/auctionsinatlanta\.com\/my\-new\-page\/1" [R=301,L]
+
 RewriteCond %{HTTP_HOST} ^auctionsinatlanta\.com$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.auctionsinatlanta\.com$
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
