@@ -19,7 +19,7 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Redirects for Auctioneers page
-    Redirect 301 /accelerated-auction-solutions-in-chamblee-georgia.php /auctioneers/1
+    Redirect 301 auctionsinatlanta.com/accelerated-auction-solutions-in-chamblee-georgia.php /auctioneers/1
     Redirect 301 /american-auction-associates-in-smyrna-georgia.php /auctioneers/2
     Redirect 301 /amp-liquidity-consultants-in-lake-city-georgia.php /auctioneers/3
     Redirect 301 /atlanta-auction-company-in-lawrenceville-georgia.php /auctioneers/4
