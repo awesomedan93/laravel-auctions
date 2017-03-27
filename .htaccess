@@ -2,6 +2,7 @@
 # Replace 'old' with your old folder name
 # Replace 'new' with your new folder name
 RewriteEngine on
+RewriteRule ^/?accelerated-auction-solutions-in-chamblee-georgia.php([a-z/.]*)$ /auctioneers/1$1 [R=301,L]
 RewriteRule ^/?american-auction-associates-in-smyrna-georgia.php([a-z/.]*)$ /auctioneers/2$1 [R=301,L]
 
 
@@ -12,9 +13,6 @@ RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
     RewriteRule ^(.*)$ public/$1 [L]
 
     # Redirects for Auctioneers page
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^auctionsinatlanta.com/accelerated-auction-solutions-in-chamblee-georgia.php$ /auctioneers/1 [R=301,L]
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
     RewriteRule ^/amp-liquidity-consultants-in-lake-city-georgia.php$ /auctioneers/3 [R=301,L]
