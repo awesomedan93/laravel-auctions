@@ -1,18 +1,6 @@
 <div class="wrapper row0">
     <div id="topbar" class="hoc clear">
 
-        <div class="fl_left">
-            <ul>
-                <li><i class="fa fa-envelope-o"></i><a href="mailto:info@auctionsinatlanta.com"> info@auctionsinatlanta.com</a></li>
-            </ul>
-        </div>
-        <div class="fl_right">
-            <ul>
-                <li><a href="{{ asset('/') }}"><i class="fa fa-lg fa-home"></i></a></li>
-                <li><a href="{{ asset('login') }}">Login</a></li>
-            </ul>
-        </div>
-
     </div>
 </div>
 

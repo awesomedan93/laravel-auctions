@@ -15,6 +15,7 @@
                 <div id="comments">
                     <h2>Send an email</h2>
                     <form action="#" method="post">
+                            {{ csrf_field() }}
                         <div class="one_third first">
                             <label for="name">Name <span>*</span></label>
                             <input type="text" name="name" id="name" value="" size="22" required>
@@ -24,8 +25,8 @@
                             <input type="email" name="email" id="email" value="" size="22" required>
                         </div>
                         <div class="one_third">
-                            <label for="url">Phone</label>
-                            <input type="url" name="url" id="url" value="" size="22">
+                            <label for="phone">Phone</label>
+                            <input type="url" name="phone" id="phone" value="" size="22">
                         </div>
                         <div class="block clear">
                             <label for="comment">Your Message</label>

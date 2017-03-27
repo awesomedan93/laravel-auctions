@@ -15,6 +15,7 @@ Route::get('/auction-houses/{id}', 'AuctionHousesController@show');
 Route::get('/contact', function () {
     return view('frontend/pages/contact');
 });
+Route::post('/contact', ['as' => 'contact_us', 'uses' => 'HomeController@sendEmail']);
 Route::get('/policy', function () {
     return view('frontend/pages/privacy-policy');
 });
