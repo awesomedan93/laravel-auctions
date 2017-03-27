@@ -2,128 +2,53 @@
 # Replace 'old' with your old folder name
 # Replace 'new' with your new folder name
 RewriteEngine on
+# Redirects for Auctioneers page
 RewriteRule ^/?accelerated-auction-solutions-in-chamblee-georgia.php([a-z/.]*)$ /auctioneers/1$1 [R=301,L]
 RewriteRule ^/?american-auction-associates-in-smyrna-georgia.php([a-z/.]*)$ /auctioneers/2$1 [R=301,L]
+RewriteRule ^/?amp-liquidity-consultants-in-lake-city-georgia.php([a-z/.]*)$ /auctioneers/3$1 [R=301,L]
+RewriteRule ^/?atlanta-auction-company-in-lawrenceville-georgia.php([a-z/.]*)$ /auctioneers/4$1 [R=301,L]
+RewriteRule ^/?atlanta-liquidation-in-tucker-georgia.php([a-z/.]*)$ /auctioneers/5$1 [R=301,L]
+RewriteRule ^/?atlanta-surplus-&-auction-in-norcross-georgia.php([a-z/.]*)$ /auctioneers/6$1 [R=301,L]
+RewriteRule ^/?auction-management-corporation-in-atlanta-georgia.php([a-z/.]*)$ /auctioneers/7$1 [R=301,L]
+RewriteRule ^/?bell-auctioneers-in-conyers-georgia.php([a-z/.]*)$ /auctioneers/8$1 [R=301,L]
+RewriteRule ^/?bennetts-auction-and-estate-services-in-tyrone-georgia.php([a-z/.]*)$ /auctioneers/9$1 [R=301,L]
+RewriteRule ^/?big-jims-auction-in-woodstock-georgia.php([a-z/.]*)$ /auctioneers/10$1 [R=301,L]
+RewriteRule ^/?big-sky-auctions-&-estate-sales-in-atlanta-georgia.php([a-z/.]*)$ /auctioneers/11$1 [R=301,L]
+RewriteRule ^/?braxtons-auctioneering-in-loganville-georgia.php([a-z/.]*)$ /auctioneers/12$1 [R=301,L]
+RewriteRule ^/?bullseye-auction-group-in-lawrenceville-georgia.php([a-z/.]*)$ /auctioneers/13$1 [R=301,L]
+RewriteRule ^/?cherry-hill-auctions-in-snellville-ga.php([a-z/.]*)$ /auctioneers/14$1 [R=301,L]
+RewriteRule ^/?clark-auction-company-in-canton-georgia.php([a-z/.]*)$ /auctioneers/15$1 [R=301,L]
+RewriteRule ^/?doan-&-associates-auction-company-in-kennesaw-georgia.php([a-z/.]*)$ /auctioneers/16$1 [R=301,L]
+RewriteRule ^/?elrod-auction-company-in-douglasville-georgia.php([a-z/.]*)$ /auctioneers/17$1 [R=301,L]
+RewriteRule ^/?harris-auction-service-in-fairburn-georgia.php([a-z/.]*)$ /auctioneers/18$1 [R=301,L]
+RewriteRule ^/?janice-l-nicholas-auctioneer-in-hapeville-georgia.php([a-z/.]*)$ /auctioneers/19$1 [R=301,L]
+RewriteRule ^/?john-dixon-&-associates-company-in-marietta-georgia.php([a-z/.]*)$ /auctioneers/20$1 [R=301,L]
+RewriteRule ^/?lee-bissell-auctions-in-suwanee-georgia.php([a-z/.]*)$ /auctioneers/21$1 [R=301,L]
+RewriteRule ^/?michael-robucks-auctions-in-atlanta-georgia.php([a-z/.]*)$ /auctioneers/22$1 [R=301,L]
+RewriteRule ^/?my-benefit-auctioneer-in-avondale-estates-georgia.php([a-z/.]*)$ /auctioneers/23$1 [R=301,L]
+RewriteRule ^/?realty-addicts-in-marietta-georgia.php([a-z/.]*)$ /auctioneers/24$1 [R=301,L]
+RewriteRule ^/?the-dobbins-company-in-atlanta-georgia.php([a-z/.]*)$ /auctioneers/25$1 [R=301,L]
+RewriteRule ^/?trader-j-auction-in-lawrenceville-georgia.php([a-z/.]*)$ /auctioneers/26$1 [R=301,L]
 
+# Redirects for Auction Houses page
+RewriteRule ^/?auction-depot-in-atlanta-ga.php([a-z/.]*)$ /auction-houses/1$1 [R=301,L]
+RewriteRule ^/?cherry-hill-auctions-in-snellville-ga.php([a-z/.]*)$ /auction-houses/2$1 [R=301,L]
+RewriteRule ^/?depew-auction-in-atlanta-ga.php([a-z/.]*)$ /auction-houses/3$1 [R=301,L]
+RewriteRule ^/?four-seasons-auction-gallery-in-alpharetta-ga.php([a-z/.]*)$ /auction-houses/4$1 [R=301,L]
+RewriteRule ^/?gallery-63-in-atlanta-ga.php([a-z/.]*)$ /auction-houses/5$1 [R=301,L]
+RewriteRule ^/?j-woodward-auctions-in-dallas-ga.php([a-z/.]*)$ /auction-houses/6$1 [R=301,L]
+RewriteRule ^/?king-galleries-in-roswell-ga.php([a-z/.]*)$ /auction-houses/7$1 [R=301,L]
+RewriteRule ^/?my-hart-auctions-in-cumming-ga.php([a-z/.]*)$ /auction-houses/8$1 [R=301,L]
+RewriteRule ^/?olde-time-auction-&-appraisal-in-conyers-ga.php([a-z/.]*)$ /auction-houses/9$1 [R=301,L]
+RewriteRule ^/?peachtree-&-bennett-antiques-estates-auctions-in-atlanta-ga.php([a-z/.]*)$ /auction-houses/10$1 [R=301,L]
+RewriteRule ^/?phoenix-store-fixtures-&-auctions-in-conyers-ga.php([a-z/.]*)$ /auction-houses/11$1 [R=301,L]
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+    RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
     RewriteRule ^(.*)$ public/$1 [L]
-
-    # Redirects for Auctioneers page
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/amp-liquidity-consultants-in-lake-city-georgia.php$ /auctioneers/3 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/atlanta-auction-company-in-lawrenceville-georgia.php$ /auctioneers/4 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/atlanta-liquidation-in-tucker-georgia.php$ /auctioneers/5 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/atlanta-surplus-&-auction-in-norcross-georgia.php$ /auctioneers/6 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/auction-management-corporation-in-atlanta-georgia.php$ /auctioneers/7 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/bell-auctioneers-in-conyers-georgia.php$ /auctioneers/8 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/bennetts-auction-and-estate-services-in-tyrone-georgia.php$ /auctioneers/9 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/big-jims-auction-in-woodstock-georgia.php$ /auctioneers/10 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/big-sky-auctions-&-estate-sales-in-atlanta-georgia.php$ /auctioneers/11 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/braxtons-auctioneering-in-loganville-georgia.php$ /auctioneers/12 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/bullseye-auction-group-in-lawrenceville-georgia.php$ /auctioneers/13 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/cherry-hill-auctions-in-snellville-ga.php$ /auctioneers/14 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/clark-auction-company-in-canton-georgia.php$ /auctioneers/15 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/doan-&-associates-auction-company-in-kennesaw-georgia.php$ /auctioneers/16 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/elrod-auction-company-in-douglasville-georgia.php$ /auctioneers/17 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/harris-auction-service-in-fairburn-georgia.php$ /auctioneers/18 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/janice-l-nicholas-auctioneer-in-hapeville-georgia.php$ /auctioneers/19 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/john-dixon-&-associates-company-in-marietta-georgia.php$ /auctioneers/20 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/lee-bissell-auctions-in-suwanee-georgia.php$ /auctioneers/21 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/michael-robucks-auctions-in-atlanta-georgia.php$ /auctioneers/22 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/my-benefit-auctioneer-in-avondale-estates-georgia.php$ /auctioneers/23 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/realty-addicts-in-marietta-georgia.php$ /auctioneers/24 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/the-dobbins-company-in-atlanta-georgia.php$ /auctioneers/25 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/trader-j-auction-in-lawrenceville-georgia.php$ /auctioneers/26 [R=301,L]
-
-    # Redirects for Auction Houses page
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/auction-depot-in-atlanta-ga.php$ /auction-houses/1 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/cherry-hill-auctions-in-snellville-ga.php$ /auction-houses/2 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/depew-auction-in-atlanta-ga.php$ /auction-houses/3 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/four-seasons-auction-gallery-in-alpharetta-ga.php$ /auction-houses/4 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/gallery-63-in-atlanta-ga.php$ /auction-houses/5 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/j-woodward-auctions-in-dallas-ga.php$ /auction-houses/6 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/king-galleries-in-roswell-ga.php$ /auction-houses/7 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/my-hart-auctions-in-cumming-ga.php$ /auction-houses/8 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/olde-time-auction-&-appraisal-in-conyers-ga.php$ /auction-houses/9 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/peachtree-&-bennett-antiques-estates-auctions-in-atlanta-ga.php$ /auction-houses/10 [R=301,L]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^/phoenix-store-fixtures-&-auctions-in-conyers-ga.php$ /auction-houses/11 [R=301,L]
 </IfModule>
 
 RewriteCond %{HTTP_HOST} ^auctionsinatlanta\.com$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.auctionsinatlanta\.com$
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^american\-auction\-associates\-in\-smyrna\-georgia\.php$ "http\:\/\/auctionsinatlanta\.com\/auctioneers\/2" [R=301,L]
