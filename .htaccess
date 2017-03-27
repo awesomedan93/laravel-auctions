@@ -3,7 +3,7 @@
     RewriteRule ^(.*)$ public/$1 [L]
 
     # Redirects for Auctioneers page
-    RewriteRule ^accelerated-auction-solutions-in-chamblee-georgia.php /about-us/jobs.html [R=301,L]
+    RewriteRule ^/accelerated-auction-solutions-in-chamblee-georgia.php /about-us/jobs.html [R=301,L]
     #RewriteRule ^/accelerated-auction-solutions-in-chamblee-georgia.php$ /auctioneers/1 [R=301,L]
     RewriteRule ^/american-auction-associates-in-smyrna-georgia.php$ /auctioneers/2 [R=301,L]
     RewriteRule ^/amp-liquidity-consultants-in-lake-city-georgia.php$ /auctioneers/3 [R=301,L]
