@@ -14,7 +14,7 @@
                 </p>
                 <div id="comments">
                     <h2>Send an email</h2>
-                    <form action="#" method="post">
+                    <form action="{{ route('contact_us') }}" method="post">
                             {{ csrf_field() }}
                         <div class="one_third first">
                             <label for="name">Name <span>*</span></label>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="one_third">
                             <label for="phone">Phone</label>
-                            <input type="url" name="phone" id="phone" value="" size="22">
+                            <input type="tel" name="phone" id="phone" value="" size="22">
                         </div>
                         <div class="block clear">
                             <label for="comment">Your Message</label>
