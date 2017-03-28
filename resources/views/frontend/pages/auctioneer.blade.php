@@ -34,9 +34,12 @@
                         <strong>Email address</strong>
                         {{ $auctioneer->email }}
                     </p>
-                    <p>
-                        <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
-                    </p>
+
+                    @if(!empty($auctioneer->website))
+                        <p>
+                            <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
+                        </p>
+                    @endif
 
                     @include('frontend.partials.adsbygoogle')
 
