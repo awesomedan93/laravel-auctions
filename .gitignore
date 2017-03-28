@@ -7,6 +7,7 @@
 Homestead.json
 Homestead.yaml
 .env
+.ftpquota
 /webpack.mix.js
 /bower_components/
 /composer.lock
