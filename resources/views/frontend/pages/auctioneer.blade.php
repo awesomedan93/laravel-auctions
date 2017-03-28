@@ -27,8 +27,11 @@
 
                 @include('frontend.partials.adsbygoogle')
 
-                <h1>{{ $auctioneer->name }}</h1>
-
+                <h1 class="float-left">{{ $auctioneer->name }}</h1>
+                <span class="bootstrap-styles">
+                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#report-modal">Report Corrections</button>
+                </span>
+                <div class="clear-both"></div>
                 <div class="left-block">
                     <p>
                         <strong>Address:</strong>
@@ -49,7 +52,9 @@
                             <a href="{{ addhttp($auctioneer->website) }}" target="_blank">{{ $auctioneer->website }}</a>
                         </p>
                     @endif
+                    <p>
 
+                    </p>
                     @include('frontend.partials.adsbygoogle')
 
                 </div>
@@ -65,7 +70,30 @@
         </main>
     </div>
 
-
+    <!-- Large modal -->
+    <div class="bootstrap-styles">
+        <!-- Modal -->
+        <div class="modal fade"  id="report-modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3 class="modal-title">Report Corrections</h3>
+                        <form method="POST" action="/" accept-charset="UTF-8">
+                            <input name="_token" type="hidden" value="MB5EA5hsQAoxBMhsYCwf9CR9UA4byeVe7ejOepkT">
+                            <input type="hidden" name="casa_id" value="2369">
+                            <div class="form-group">
+                                <textarea class="form-control" name="report" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
+                            </div>
+                            <input type="submit" class="btn btn-primary pull-right" value="Submit">
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('custom-footer-js')

@@ -17,7 +17,12 @@
 
                 @include('frontend.partials.adsbygoogle')
 
-                <h1>Auctions & Auction Houses in the Atlanta Georgia Area</h1>
+                <h1 class="title-business">Auctions & Auction Houses in the Atlanta Georgia Area</h1>
+                <span class="info-text">Contact us <a href="#" data-toggle="modal" data-target="#report-modal">here</a> to report a correction or click <a href="#" data-toggle="modal" data-target="#add-business-modal">here</a> to add your business for free</span>
+                <span class="bootstrap-styles">
+                    <button type="button" id="#add-business-modal" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add-business-modal">Add your business</button>
+                </span>
+
                 <ul class="no-padding">
                     <table>
                         <thead>
@@ -51,5 +56,211 @@
         </main>
     </div>
 
+    <!-- Large modal -->
+    <div class="bootstrap-styles">
+        <!-- Modal -->
+        <div class="modal fade"  id="report-modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3 class="modal-title">Report Corrections</h3>
+                        <form method="POST" action="/" accept-charset="UTF-8">
+                            <input name="_token" type="hidden" value="MB5EA5hsQAoxBMhsYCwf9CR9UA4byeVe7ejOepkT">
+                            <input type="hidden" name="casa_id" value="2369">
+                            <div class="form-group">
+                                <textarea class="form-control" name="report" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
+                            </div>
+                            <input type="submit" class="btn btn-primary pull-right" value="Submit">
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+
+        <!-- Modal Add Business -->
+        <div class="modal fade"  id="add-business-modal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 class="modal-title">Add your business</h3>
+                    <form id="new-business-form" method="POST" action="/" accept-charset="UTF-8">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Business type</label>
+                                    <select class="form-control" name="business-type">
+                                        <option value="1">Auctioneer</option>
+                                        <option value="2">Auction House</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">* Name</label>
+                                    <input type="text" class="form-control" name="name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" name="city">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" class="form-control" name="phone">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <input type="url" class="form-control" name="website">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+
+                                    <div class="input-group">
+                                        <input type="text" name="address" id="address" placeholder="Address" class="form-control">
+                                        <input type="hidden" name="lat" id="lat" value="">
+                                        <input type="hidden" name="lng" id="lng" value="">
+
+                                        <span class="input-group-btn">
+                                              <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
+                                            </span>
+                                    </div>
+
+                                </div>
+
+                                <div id="map-front">
+
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script>
+        $('#add-business-modal').on('show.bs.modal', function (event) {
+            initialize();
+        });
+
+        $('#new-business-form').on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        $("#address").keyup(function(event){
+            if(event.keyCode == 13){
+                codeAddress();
+            }
+        });
+    </script>
+    <script>
+
+        function initialize() {
+
+            window.map = null;
+            window.marker = null;
+
+            var latlng = new google.maps.LatLng(33.7489954, -84.3879824);
+            var mapOptions = {
+                zoom: 10,
+                center: latlng
+            }
+            window.map = new google.maps.Map(document.getElementById("map-front"), mapOptions);
+
+            google.maps.event.addListener(window.map, 'click', function(event) {
+                //If marker is already added change position on click
+
+                if(window.marker && window.marker.setPosition){
+                    window.marker.setPosition(event.latLng);
+                    //Else place marker
+                } else {
+                    window.marker = placeMarker(event.latLng);
+                }
+                document.getElementById("lng").value = event.latLng.lng();
+                document.getElementById("lat").value = event.latLng.lat();
+            });
+
+            setTimeout(function () {
+                google.maps.event.trigger(window.map, 'resize');
+                map.setCenter(latlng);
+            }, 300)
+
+            function placeMarker(location) {
+
+                window.marker = new google.maps.Marker({
+                    position: location,
+                    map: window.map,
+                    draggable:true
+                });
+                google.maps.event.addListener(window.marker, 'dragend', function (event) {
+
+                    document.getElementById("lng").value = this.getPosition().lng();
+                    document.getElementById("lat").value = this.getPosition().lat();
+                });
+                return window.marker;
+            }
+        }
+
+        function codeAddress() {
+            var geocoder = null;
+            geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('address').value;
+            var loc=[];
+
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == 'OK') {
+                    window.map.setCenter(results[0].geometry.location);
+
+                    if(window.marker && window.marker.setPosition){
+                        window.marker.setPosition(results[0].geometry.location);
+
+                    }else{
+                        window.marker = new google.maps.Marker({
+                            map: window.map,
+                            position: results[0].geometry.location,
+                            draggable:true
+                        });
+                    }
+
+                    document.getElementById("lng").value = results[0].geometry.location.lng();
+                    document.getElementById("lat").value = results[0].geometry.location.lat();
+                    google.maps.event.addListener(window.marker, 'dragend', function (event) {
+
+                        document.getElementById("lng").value = this.getPosition().lng();
+                        document.getElementById("lat").value = this.getPosition().lat();
+                    });
+
+                } else {
+
+                    var errorMessage = 'Geocode was not successful for the following reason: ' + status;
+                    sweetAlert("Oops...", errorMessage, "error");
+                }
+            });
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A">
+    </script>
 @endsection

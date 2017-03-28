@@ -110,6 +110,15 @@
                 {{ Form::close() }}
             </div>
             <!-- /.row -->
+            <!-- Large modal -->
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        ...
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- /.content -->
     </div>
@@ -118,6 +127,8 @@
 @endsection
 @section('custom-footer-js')
     <script>
+        $('#myModal').modal('toggle')
+
         $('#auctioneers-form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) {
