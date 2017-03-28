@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
-    @include('frontend.includes.head')
+@include('frontend.includes.head')
 </head>
 <body id="top">
 
 @include('frontend.includes.header')
 
-    @yield('content')
+@yield('content')
 
 @include('frontend.includes.footer')
 

@@ -1,4 +1,9 @@
 @extends('frontend.layouts.default')
+@section('page_title')
+{{ $auctionHouse->name }} in {{ $auctionHouse->city }}, Georgia GA @endsection
+
+@section('page_meta_description'){{ $auctionHouse->address }}@endsection
+
 @section('content')
     <div class="wrapper row2">
         <div id="breadcrumb" class="hoc clear">

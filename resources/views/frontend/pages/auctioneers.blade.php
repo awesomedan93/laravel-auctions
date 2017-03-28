@@ -1,4 +1,8 @@
 @extends('frontend.layouts.default')
+
+@section('page_title','Auctioneers')
+@section('page_meta_description','Auctioneers & Auction Companies in Atlanta, GA')
+
 @section('content')
     <div class="wrapper row3">
         <main class="hoc container clear">
@@ -8,7 +12,8 @@
 
                 @include('frontend.partials.adsbygoogle')
 
-                <h1>Auctioneers & Auction Companies in Atlanta, GA</h1>
+                <h1 class="title-business">Auctioneers & Auction Companies in Atlanta, GA</h1>
+                <span class="info-text">Contact us <a href="{{ url('/contact') }}">here</a> to report a correction or click here to add your business for free</span>
                 <ul class="no-padding">
                     <table>
                         <thead>

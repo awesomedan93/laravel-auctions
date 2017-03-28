@@ -1,4 +1,8 @@
 @extends('frontend.layouts.default')
+
+@section('page_title','Auction Houses')
+@section('page_meta_description','Auctions & Auction Houses in the Atlanta Georgia Area')
+
 @section('content')
     <div class="wrapper row3">
         <main class="hoc container clear">
