@@ -47,6 +47,10 @@
                                     <input type="text" class="form-control" name="name" value="{{ $auctionHouse->name }}" id="name" placeholder="Enter name">
                                 </div>
                                 <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" name="city" value="{{ $auctionHouse->city }}" id="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" name="phone" value="{{ $auctionHouse->phone }}" id="phone" placeholder="Phone">
                                 </div>

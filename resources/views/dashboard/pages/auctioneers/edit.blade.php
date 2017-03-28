@@ -48,6 +48,10 @@
                                     <input type="text" class="form-control" name="name" value="{{ $auctioneer->name }}" id="name" placeholder="Enter name">
                                 </div>
                                 <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" name="city" value="{{ $auctioneer->city }}" id="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" name="phone" value="{{ $auctioneer->phone }}" id="phone" placeholder="Phone">
                                 </div>
