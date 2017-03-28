@@ -1,8 +1,12 @@
 @extends('frontend.layouts.default')
-@section('page_title')
-{{ $auctionHouse->name }} in {{ $auctionHouse->city }}, Georgia GA @endsection
 
-@section('page_meta_description'){{ $auctionHouse->address }}@endsection
+@section('page_title')
+<title>{{ $auctionHouse->name }} in {{ $auctionHouse->city }}, Georgia GA</title>
+@endsection
+
+@section('page_meta_description')
+<meta name="Description" Content="{{ $auctionHouse->name }} is an auction house in {{ $auctionHouse->city }} at {{ $auctionHouse->address }}">
+@endsection
 
 @section('content')
     <div class="wrapper row2">

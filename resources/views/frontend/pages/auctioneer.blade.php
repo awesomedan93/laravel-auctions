@@ -1,13 +1,12 @@
 @extends('frontend.layouts.default')
 
 @section('page_title')
-{{ $auctioneer->name }} in {{ $auctioneer->city }}, Georgia GA
+<title>{{ $auctioneer->name }} in {{ $auctioneer->city }}, Georgia GA</title>
 @endsection
 
 @section('page_meta_description')
-    {{ $auctioneer->address }}
+    <meta name="Description" Content="{{ $auctioneer->name }} is an auctioneer in {{ $auctioneer->city }} at {{ $auctioneer->address }}">
 @endsection
-
 @section('content')
     <div class="wrapper row2">
         <div id="breadcrumb" class="hoc clear">
@@ -46,7 +45,8 @@
 
                     @if(!empty($auctioneer->website))
                         <p>
-                            <a href="{{ addhttp($auctioneer->website) }}" target="_blank">Visit their website</a>
+                            <strong>Website: </strong>
+                            <a href="{{ addhttp($auctioneer->website) }}" target="_blank">{{ $auctioneer->website }}</a>
                         </p>
                     @endif
 

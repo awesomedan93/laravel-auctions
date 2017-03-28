@@ -1,7 +1,12 @@
 @extends('frontend.layouts.default')
 
-@section('page_title','Auctioneers')
-@section('page_meta_description','Auctioneers & Auction Companies in Atlanta, GA')
+@section('page_title')
+    <title>Auctioneers</title>
+@endsection
+
+@section('page_meta_description')
+    <meta name="Description" Content="Auctioneers & Auction Companies in Atlanta, GA">
+@endsection
 
 @section('content')
     <div class="wrapper row3">
