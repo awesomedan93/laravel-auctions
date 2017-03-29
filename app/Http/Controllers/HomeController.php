@@ -33,7 +33,7 @@ class HomeController extends Controller
         $inputData = $request->all();
 
         $to = "musteata.daniel@yahoo.com";
-        $headers = "From: ".$inputData['email'];
+        $headers = "From: info@auctionsinatlanta.com";
         $msg = $inputData['comment']. "\n"."Phone: ".$inputData['phone'];
         $sended = mail($to,$inputData['name'],$msg,$headers);
         dd($sended);
