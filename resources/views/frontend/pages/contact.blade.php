@@ -13,8 +13,10 @@
                     If you are an auctioneer or have an auction house in the Atlanta area and would like your information added to our site, please send us an email with all of your business information. <a href="mailto:info@auctionsinatlanta.com">info@auctionsinatlanta.com</a>
                 </p>
                 <div id="comments">
+                    <a id="message"></a>
                     <h2>Send an email</h2>
                     <div class="flash-message">
+
                         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                             @if(Session::has('alert-' . $msg))
 

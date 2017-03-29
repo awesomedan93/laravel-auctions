@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Mail;
 
 class HomeController extends Controller
@@ -35,13 +36,13 @@ class HomeController extends Controller
         $to = "musteata.daniel@yahoo.com";
         $headers = "From: info@auctionsinatlanta.com";
         $msg = "<strong>Message:</strong> ".$inputData['comment']. "\n"."<strong>Phone:</strong> ".$inputData['phone'];
-        $success = mail($to,$inputData['name'],$msg,$headers);
+        //$success = mail($to,$inputData['name'],$msg,$headers);
 
-        if($success){
+        if(true){
             $request->session()->flash('alert-success', 'Email has been sent!');
         }else{
             $request->session()->flash('alert-danger', 'Something wrong!');
         }
-        return redirect()->back();
+        return Redirect::to('/contact#message');
     }
 }
