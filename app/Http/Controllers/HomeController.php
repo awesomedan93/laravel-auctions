@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $to = "musteata.daniel@yahoo.com";
         $headers = "From: info@auctionsinatlanta.com";
-        $msg = "<b>Message:</b> ".$inputData['comment']. "\n"."<b>Phone:</b> ".$inputData['phone'];
+        $msg = '<span style="font-weight: bold">Message:</span> '.$inputData['comment']. "\n".'<span style="font-weight: bold">Phone:</span> '.$inputData['phone'];
         $success = mail($to,$inputData['name'],$msg,$headers);
 
         if($success){
