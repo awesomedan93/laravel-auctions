@@ -132,7 +132,7 @@
                     confirmButtonText: "Yes, delete it!",
                     cancelButtonText: "No, cancel plx!",
                     closeOnConfirm: false,
-                    closeOnCancel: false
+                    closeOnCancel: true
                 },
                 function(isConfirm){
                     if (isConfirm) {
