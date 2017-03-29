@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 @import url("./fontawesome.min.css");
-@import url("./custom.flexslider.css");
+
 @import url("./framework.css");
 
 
@@ -156,6 +156,7 @@
 --------------------------------------------------------------------------------------------------------------- */
 *, *::before, *::after{transition:all .3s ease-in-out;}
 #map *, #map *::before, #map *::after{transition:none;}
+#map-front *, #map-front *::before, #map-front *::after{transition:none;}
 #mainav form *{transition:none !important;}
 
 
@@ -284,10 +285,6 @@ input:focus, textarea:focus, *:required:focus{border-color:#F08714;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 
-/* Flexslider */
-.flex-direction-nav a, .flex-direction-nav .flex-disabled:hover{color:#FFFFFF;}
-.flex-direction-nav a:hover{color:#F08714;}
-
 
 /* Rows */
 .row0, .row0 a{color:rgba(255,255,255,.5); background-color:#141F35;}
@@ -415,7 +412,25 @@ table a, #comments a{background-color:inherit;}
 #logo h2 {
 	font-size: 17px;
 }
+.info-text {
 
+}
+.title-business {
+	margin-bottom: 5px;
+}
+.clear-both {
+	clear: both;
+}
+.float-left {
+	float:left;
+}
+#add-business-modal label {
+	font-weight: 100;
+}
+#map-front {
+	height: 400px;
+	width: 100%;
+}
 .alert-success {
 	color: #3c763d;
 	background-color: #dff0d8;

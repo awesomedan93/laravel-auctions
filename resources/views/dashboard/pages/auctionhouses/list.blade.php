@@ -1,8 +1,10 @@
 @extends('dashboard.default')
 
+@section('page_title','Auction Houses list')
+
 @section('custom-css')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables/dataTables.bootstrap.css') }}">
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables/dataTables.bootstrap.css') }}">
 @endsection
 
 @section('content')
@@ -36,6 +38,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
                                     <th>Address</th>
                                     <th class="no-sort">Phone</th>
                                     <th>Email</th>
@@ -48,6 +51,7 @@
                                     <tr>
                                         <td>{{ $auctionHouse->id }}</td>
                                         <td>{{ $auctionHouse->name }}</td>
+                                        <td>{{ $auctionHouse->city }}</td>
                                         <td>{{ $auctionHouse->address }}</td>
                                         <td>{{ $auctionHouse->phone }}</td>
                                         <td>{{ $auctionHouse->email }}</td>
@@ -68,6 +72,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Email</th>
@@ -127,7 +132,7 @@
                     confirmButtonText: "Yes, delete it!",
                     cancelButtonText: "No, cancel plx!",
                     closeOnConfirm: false,
-                    closeOnCancel: false
+                    closeOnCancel: true
                 },
                 function(isConfirm){
                     if (isConfirm) {

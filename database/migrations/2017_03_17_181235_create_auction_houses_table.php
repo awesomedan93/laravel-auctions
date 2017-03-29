@@ -17,8 +17,10 @@ class CreateAuctionHousesTable extends Migration
             $table->engine = "InnoDB";
 
             $table->increments('id');
+            $table->enum('type', ['regular', 'submitted'])->default('regular');
             $table->string('name');
             $table->string('address')->nullable();
+            $table->string('city')->nullable();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
             $table->string('phone')->nullable();

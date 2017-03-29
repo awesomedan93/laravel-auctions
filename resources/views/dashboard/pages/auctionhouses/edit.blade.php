@@ -47,6 +47,10 @@
                                     <input type="text" class="form-control" name="name" value="{{ $auctionHouse->name }}" id="name" placeholder="Enter name">
                                 </div>
                                 <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" name="city" value="{{ $auctionHouse->city }}" id="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" name="phone" value="{{ $auctionHouse->phone }}" id="phone" placeholder="Phone">
                                 </div>
@@ -106,6 +110,15 @@
                 {{ Form::close() }}
             </div>
             <!-- /.row -->
+            <!-- Large modal -->
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        ...
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- /.content -->
     </div>
@@ -114,6 +127,8 @@
 @endsection
 @section('custom-footer-js')
     <script>
+        $('#myModal').modal('toggle')
+
         $('#auctioneers-form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) {

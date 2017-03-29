@@ -1,5 +1,7 @@
 @extends('dashboard.default')
 
+@section('page_title','Auctioneers list')
+
 @section('custom-css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables/dataTables.bootstrap.css') }}">
@@ -36,6 +38,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
                                     <th>Address</th>
                                     <th class="no-sort">Phone</th>
                                     <th>Email</th>
@@ -48,6 +51,7 @@
                                     <tr>
                                         <td>{{ $auctioneer->id }}</td>
                                         <td>{{ $auctioneer->name }}</td>
+                                        <td>{{ $auctioneer->city }}</td>
                                         <td>{{ $auctioneer->address }}</td>
                                         <td>{{ $auctioneer->phone }}</td>
                                         <td>{{ $auctioneer->email }}</td>
@@ -68,6 +72,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Email</th>
@@ -126,7 +131,7 @@
                     confirmButtonText: "Yes, delete it!",
                     cancelButtonText: "No, cancel plx!",
                     closeOnConfirm: false,
-                    closeOnCancel: false
+                    closeOnCancel: true
                 },
                 function(isConfirm){
                     if (isConfirm) {
