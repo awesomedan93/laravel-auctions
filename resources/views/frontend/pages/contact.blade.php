@@ -14,6 +14,17 @@
                 </p>
                 <div id="comments">
                     <h2>Send an email</h2>
+                    <div class="flash-message">
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+
+                                <div class="alert alert-{{ $msg }} fade in alert-dismissable" style="margin-top:18px;">
+                                    <strong>{{ Session::get('alert-' . $msg) }}!</strong>
+                                </div>
+                            @endif
+                        @endforeach
+
+                    </div> <!-- end .flash-message -->
                     <form action="{{ route('contact_us') }}" method="post">
                             {{ csrf_field() }}
                         <div class="one_third first">
