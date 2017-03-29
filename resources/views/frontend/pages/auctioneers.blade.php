@@ -78,6 +78,21 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Submit Business Success -->
+        <div class="modal fade" id="submit-business-success" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="modal-title">Success..</h3>
+                        <label>One of the members of our team will review your post in the shortest possible time</label><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Modal Add Business -->
         <div class="modal fade"  id="add-business-modal" tabindex="-1" role="dialog"
@@ -257,6 +272,32 @@
             });
         }
 
+    </script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#new-business-form :submit").click(function(e){
+
+            e.preventDefault();
+            var url = "{{ route('submit_business') }}";
+
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: $("#new-business-form").serialize(),
+                success: function(data){
+
+                },
+                error: function(data){
+                    var errors = data;
+                    console.log(errors);
+                }
+            });
+        });
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A">

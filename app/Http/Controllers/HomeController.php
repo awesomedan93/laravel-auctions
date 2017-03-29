@@ -38,4 +38,9 @@ class HomeController extends Controller
         $sended = mail($to,$inputData['name'],$msg,$headers);
         dd($sended);
     }
+
+    public function saveBusiness(Request $request)
+    {
+        dd($request->all());
+    }
 }
