@@ -9,13 +9,16 @@ class Auctioneer extends Authenticatable
 {
     use Notifiable;
 
+    const REGULAR_AUCTIONEER = 'regular';
+    const SUBMITTED_AUCTIONEER = 'submitted';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
+        'name', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
     ];
 
     public function users()

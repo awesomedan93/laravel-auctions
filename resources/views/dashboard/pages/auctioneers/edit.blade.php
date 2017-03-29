@@ -15,6 +15,13 @@
                 <li class="active">Edit Auctioneer</li>
             </ol>
             <br>
+
+            @if($auctioneer->type == 'submitted')
+                <div class="alert alert-warning" role="alert">
+                    This Auctioneer was submitted by the user. Click <strong><a href="#" class="button-approve-auctioneer">here</a></strong> to approve it.
+                </div>
+            @endif
+
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>
@@ -40,9 +47,10 @@
                         </div>
                         <!-- /.box-header -->
 
-
                             {{ csrf_field() }}
+
                             <div class="box-body">
+                                <input type="hidden" name="id" value="{{ $auctioneer->id }}">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ $auctioneer->name }}" id="name" placeholder="Enter name">
@@ -71,6 +79,11 @@
                     </div>
                     <!-- /.box -->
                     <button type="submit" class="btn btn-primary">Update</button>
+                    @if($auctioneer->type == 'submitted')
+                        <button type="submit" data-id="{{ $auctioneer->id }}" class="btn btn-warning btn-md button-approve-auctioneer">Approve</button>
+                    @endif
+                    <button type="submit" data-id="{{ $auctioneer->id }}" class="btn btn-danger btn-md button-delete-auctioneer">Delete</button>
+
                 </div>
                 <!--/.col (left) -->
 
@@ -119,6 +132,91 @@
 
 @endsection
 @section('custom-footer-js')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(".button-approve-auctioneer").click(function(e){
+            var id = $('input[name=id]').val();
+
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#F39C12",
+                    confirmButtonText: "Yes, approve it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+
+                        var url = "{{ asset('dashboard/auctioneers') }}/" + id + "/approve";
+
+                        $.ajax({
+                            method: "POST",
+                            url: url,
+                            success: function(data){
+                                swal("Approved!", "The auctioneer has been approved.", "success");
+                                //window.location.replace("/dashboard/auctioneers");
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "", "error");
+                    }
+                });
+        });
+
+        $(".button-delete-auctioneer").click(function(e){
+            var id = $('input[name=id]').val();
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this auctioneer!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+
+                        var url = "{{ asset('dashboard/auctioneers') }}/" + id;
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: url,
+                            success: function(data){
+                                swal("Deleted!", "The auctioneer has been deleted.", "success");
+                                window.location.replace("/dashboard/auctioneers");
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "", "error");
+                    }
+                });
+        });
+    </script>
+
     <script>
         $('#auctioneers-form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;

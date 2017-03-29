@@ -29,4 +29,6 @@ Route::resource('/dashboard/auctioneers', 'AuctioneersController');
 Route::resource('/dashboard/auction-houses', 'AuctionHousesController');
 
 //AJAX ROUTES
-Route::post('/submit-business', ['as' => 'submit_business', 'uses' => 'HomeController@saveBusiness']);
+Route::post('/submit-business', ['as' => 'submitBusiness', 'uses' => 'HomeController@saveBusiness']);
+Route::post('/dashboard/auctioneers/{id}/approve', ['as' => 'approve.auctioneer', 'uses' => 'AuctioneersController@approve']);
+Route::post('/dashboard/auction-houses/{id}/approve', ['as' => 'approve.auction.house', 'uses' => 'AuctionHousesController@approve']);

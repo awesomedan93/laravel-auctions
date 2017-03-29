@@ -17,7 +17,7 @@ class CreateAuctionHousesTable extends Migration
             $table->engine = "InnoDB";
 
             $table->increments('id');
-            $table->enum('type', ['regular', 'submitted'])->default('regular');
+            $table->enum('type', ['regular', 'submitted']);
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('city')->nullable();
@@ -26,7 +26,7 @@ class CreateAuctionHousesTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

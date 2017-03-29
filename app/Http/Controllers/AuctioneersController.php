@@ -19,7 +19,6 @@ class AuctioneersController extends Controller
      */
     public function showAll()
     {
-
         $auctioneers = Auctioneer::all();
 
         return view('frontend.pages.auctioneers')->with('auctioneers', $auctioneers);
@@ -27,7 +26,7 @@ class AuctioneersController extends Controller
 
     public function index()
     {
-        $auctioneers = Auctioneer::all();
+        $auctioneers = Auctioneer::orderByRaw("FIELD(type, \"submitted\", \"regular\")")->get();;
 
         return view('dashboard.pages.auctioneers.list')->with('auctioneers', $auctioneers);
     }
@@ -66,7 +65,7 @@ class AuctioneersController extends Controller
 
     public function edit($id)
     {
-        $auctioneer = Auctioneer::find($id);
+        $auctioneer = Auctioneer::findOrFail($id);
 
         return view('dashboard.pages.auctioneers.edit')->with('auctioneer',$auctioneer);
     }
@@ -99,6 +98,19 @@ class AuctioneersController extends Controller
         catch (\Exception $e) {
 
             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 403 );
+        }
+    }
+
+    public function approve($id)
+    {
+
+        $inputData['user_id'] = Auth::user()->id;
+        $inputData['type'] = 'regular';
+
+        $updated = Auctioneer::findOrFail($id)->update($inputData);
+
+        if($updated){
+            return redirect()->route('auctioneers.index');
         }
     }
 }

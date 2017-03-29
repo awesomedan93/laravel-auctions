@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auctioneer;
+use App\Models\AuctionHouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>['show','sendEmail']]);
+        $this->middleware('auth', ['except'=>['show','sendEmail','saveBusiness']]);
     }
 
     /**
@@ -47,6 +49,31 @@ class HomeController extends Controller
 
     public function saveBusiness(Request $request)
     {
-        dd($request->all());
+
+        $this->validate($request, [
+            'business_type' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+            'city' => 'required'
+        ]);
+
+        $inputData = $request->all();
+        $inputData['type'] = 'submitted';
+
+        if($inputData['business_type'] == 'auctioneer'){
+            $business = new Auctioneer();
+        }else{
+            $business = new AuctionHouse();
+        }
+
+        $business->fill($inputData);
+        $saved = $business->save();
+
+        if($saved){
+            return response()->json(['status' => 'success']);
+        }else{
+            return response()->json(['status' => 'failed']);
+        }
+
     }
 }

@@ -10,12 +10,19 @@
                 Edit Auction House
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Auctioneers Houses</a></li>
+                <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ route('auction-houses.index')}}">Auctioneers Houses</a></li>
                 <li class="active">Edit Auction House</li>
             </ol>
             <br>
-            @if (count($errors) > 0)
+
+            @if($auctionHouse->type == 'submitted')
+                <div class="alert alert-warning" role="alert">
+                    This Auction House was submitted by the user. Click <strong><a href="#" class="button-approve-auctionhouse">here</a></strong> to approve it.
+                </div>
+            @endif
+
+        @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -41,7 +48,10 @@
                         <!-- /.box-header -->
 
                             {{ csrf_field() }}
+
                             <div class="box-body">
+                                <input type="hidden" name="id" value="{{ $auctionHouse->id }}">
+
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ $auctionHouse->name }}" id="name" placeholder="Enter name">
@@ -69,6 +79,11 @@
                     </div>
                     <!-- /.box -->
                     <button type="submit" class="btn btn-primary">Update</button>
+                    @if($auctionHouse->type == 'submitted')
+                        <a href="#" data-id="{{ $auctionHouse->id }}" class="btn btn-warning btn-md button-approve-auctionhouse">Approve</a>
+                    @endif
+                    <button type="submit" data-id="{{ $auctionHouse->id }}" class="btn btn-danger btn-md button-delete-auctionhouse">Delete</button>
+
                 </div>
                 <!--/.col (left) -->
 
@@ -127,7 +142,91 @@
 @endsection
 @section('custom-footer-js')
     <script>
-        $('#myModal').modal('toggle')
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(".button-approve-auctionhouse").click(function(e){
+            var id = $('input[name=id]').val();
+
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#F39C12",
+                    confirmButtonText: "Yes, approve it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+
+                        var url = "{{ asset('dashboard/auction-houses') }}/" + id + "/approve";
+
+                        $.ajax({
+                            method: "POST",
+                            url: url,
+                            success: function(data){
+                                swal("Approved!", "The auctioneer has been approved.", "success");
+                                //window.location.replace("/dashboard/auctioneers");
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "", "error");
+                    }
+                });
+        });
+
+        $(".button-delete-auctionhouse").click(function(e){
+            var id = $('input[name=id]').val();
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this auctioneer!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+
+                        var url = "{{ asset('dashboard/auction-houses') }}/" + id;
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: url,
+                            success: function(data){
+                                swal("Deleted!", "The auctioneer has been deleted.", "success");
+                                window.location.replace("/dashboard/auction-houses");
+                            },
+                            error: function(data){
+                                var errors = data;
+                                console.log(errors);
+                                swal("Error", errors, "error");
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "", "error");
+                    }
+                });
+        });
+    </script>
+
+    <script>
 
         $('#auctioneers-form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;

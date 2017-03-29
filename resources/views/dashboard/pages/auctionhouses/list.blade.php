@@ -48,7 +48,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($auctionHouses as $auctionHouse)
-                                    <tr>
+                                    <tr {{ ($auctionHouse->type == \App\Models\AuctionHouse::SUBMITTED_AUCTION_HOUSE)?'class=submitted-row':'' }}>
                                         <td>{{ $auctionHouse->id }}</td>
                                         <td>{{ $auctionHouse->name }}</td>
                                         <td>{{ $auctionHouse->city }}</td>
@@ -104,6 +104,7 @@
     <script>
         $(function () {
             $('#example1').DataTable({
+                "order": [],
                 "columnDefs": [ {
                     "targets"  : 'no-sort',
                     "orderable": false,

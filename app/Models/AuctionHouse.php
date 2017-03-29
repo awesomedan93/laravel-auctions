@@ -9,7 +9,10 @@ class AuctionHouse extends Authenticatable
 {
     use Notifiable;
 
+    const REGULAR_AUCTION_HOUSE = 'regular';
+    const SUBMITTED_AUCTION_HOUSE = 'submitted';
+
     protected $fillable = [
-        'name', 'address', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
+        'name', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
     ];
 }

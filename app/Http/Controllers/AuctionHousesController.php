@@ -69,7 +69,7 @@ class AuctionHousesController extends Controller
 
     public function edit($id)
     {
-        $auctionHouse = AuctionHouse::find($id);
+        $auctionHouse = AuctionHouse::findOrFail($id);
 
         return view('dashboard.pages.auctionhouses.edit')->with('auctionHouse',$auctionHouse);
     }
@@ -103,6 +103,19 @@ class AuctionHousesController extends Controller
         catch (\Exception $e) {
 
             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 403 );
+        }
+    }
+
+    public function approve($id)
+    {
+
+        $inputData['user_id'] = Auth::user()->id;
+        $inputData['type'] = AuctionHouse::REGULAR_AUCTION_HOUSE;
+
+        $updated = AuctionHouse::findOrFail($id)->update($inputData);
+        dd($updated);
+        if($updated){
+            return redirect()->route('auctioneers.index');
         }
     }
 }
