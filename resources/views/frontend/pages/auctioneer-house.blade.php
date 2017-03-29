@@ -1,7 +1,7 @@
 @extends('frontend.layouts.default')
 
 @section('page_title')
-<title>{{ $auctionHouse->name }} in {{ $auctionHouse->city }}, Georgia GA</title>
+<title>{{ $auctionHouse->name }} in {{ $auctionHouse->city }}, GA</title>
 @endsection
 
 @section('page_meta_description')
