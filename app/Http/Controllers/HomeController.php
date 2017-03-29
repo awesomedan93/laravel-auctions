@@ -35,9 +35,9 @@ class HomeController extends Controller
         $to = "musteata.daniel@yahoo.com";
         $headers = "From: info@auctionsinatlanta.com";
         $msg = "<b>Message:</b> ".$inputData['comment']. "\n"."<b>Phone:</b> ".$inputData['phone'];
-        //$success = mail($to,$inputData['name'],$msg,$headers);
+        $success = mail($to,$inputData['name'],$msg,$headers);
 
-        if(true){
+        if($success){
             $request->session()->flash('alert-success', 'Email has been sent!');
         }else{
             $request->session()->flash('alert-danger', 'Something wrong!');
