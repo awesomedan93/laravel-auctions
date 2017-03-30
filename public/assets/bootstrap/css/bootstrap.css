@@ -3205,25 +3205,25 @@
 }
 .bootstrap-styles .btn-primary {
   color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
+  background-color: #141F35;
+  border-color: #141F35;
 }
 .bootstrap-styles .btn-primary:focus,
 .bootstrap-styles .btn-primary.focus {
   color: #fff;
-  background-color: #286090;
-  border-color: #122b40;
+  background-color: #141F35;
+  border-color: #141F35;
 }
 .bootstrap-styles .btn-primary:hover {
-  color: #fff;
-  background-color: #286090;
+  color: orange;
+  background-color: #204d74;
   border-color: #204d74;
 }
 .bootstrap-styles .btn-primary:active,
 .bootstrap-styles .btn-primary.active,
 .bootstrap-styles .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #286090;
+  background-color: #204d74;
   border-color: #204d74;
 }
 .bootstrap-styles .btn-primary:active:hover,
@@ -3253,8 +3253,8 @@
 .bootstrap-styles .btn-primary.disabled.focus,
 .bootstrap-styles .btn-primary[disabled].focus,
 .bootstrap-styles fieldset[disabled] .btn-primary.focus {
-  background-color: #337ab7;
-  border-color: #2e6da4;
+  background-color: #204d74;
+  border-color: #204d74;
 }
 .bootstrap-styles .btn-primary .badge {
   color: #337ab7;
