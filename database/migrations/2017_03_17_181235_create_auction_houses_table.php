@@ -14,7 +14,6 @@ class CreateAuctionHousesTable extends Migration
     public function up()
     {
         Schema::create('auction_houses', function (Blueprint $table) {
-            $table->engine = "InnoDB";
 
             $table->increments('id');
             $table->enum('type', ['regular', 'submitted']);

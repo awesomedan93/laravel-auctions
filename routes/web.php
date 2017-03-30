@@ -27,8 +27,11 @@ Auth::routes();
 
 Route::resource('/dashboard/auctioneers', 'AuctioneersController');
 Route::resource('/dashboard/auction-houses', 'AuctionHousesController');
+Route::get('/dashboard/corrections', 'CorrectionsController@index');
 
 //AJAX ROUTES
 Route::post('/submit-business', ['as' => 'submitBusiness', 'uses' => 'HomeController@saveBusiness']);
 Route::post('/dashboard/auctioneers/{id}/approve', ['as' => 'approve.auctioneer', 'uses' => 'AuctioneersController@approve']);
 Route::post('/dashboard/auction-houses/{id}/approve', ['as' => 'approve.auction.house', 'uses' => 'AuctionHousesController@approve']);
+Route::post('/dashboard/corrections', ['as' => 'add.correction', 'uses' => 'CorrectionsController@store']);
+Route::delete('/dashboard/corrections/{id}', ['as' => 'remove.correction', 'uses' => 'CorrectionsController@destroy']);

@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Auctioneer extends Authenticatable
+class Auctioneer extends Model
 {
-    use Notifiable;
 
     const REGULAR_AUCTIONEER = 'regular';
     const SUBMITTED_AUCTIONEER = 'submitted';

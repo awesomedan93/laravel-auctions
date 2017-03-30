@@ -70,6 +70,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li {{ ((Request::is('dashboard/auctioneers')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auctioneers') }}"><i class="glyphicon glyphicon-usd"></i> <span>Auctioneers</span></a></li>
             <li {{ ((Request::is('dashboard/auction-houses')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/auction-houses') }}"><i class="fa fa-group"></i> <span>Auction Houses</span></a></li>
+            <li {{ ((Request::is('dashboard/corrections')) ? 'class=active' : ' ') }}><a href="{{ url('/dashboard/corrections') }}"><i class="fa fa-group"></i> <span>Corrections</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
