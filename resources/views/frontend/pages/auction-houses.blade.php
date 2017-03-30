@@ -197,7 +197,7 @@
                 $('#new-business-form').on('submit', function (e) {
                     if (e.isDefaultPrevented()) {
                     } else {
-                        e.preventDefault() // if you're using AJAX
+                        e.preventDefault();
                         sendBusiness();
                     }
                 })
