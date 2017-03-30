@@ -452,6 +452,18 @@ table a, #comments a{background-color:inherit;}
 	border: 1px solid transparent;
 	border-radius: 4px;
 }
+
+body.modal-open {
+	overflow: hidden;
+	position:fixed;
+	width: 100%;
+}
+.modal {
+	overflow-y:auto !important;
+}
+.disable-scroll::-webkit-scrollbar {
+	display: none;
+}
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */

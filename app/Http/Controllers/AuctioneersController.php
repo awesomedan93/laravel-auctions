@@ -19,14 +19,14 @@ class AuctioneersController extends Controller
      */
     public function showAll()
     {
-        $auctioneers = Auctioneer::all();
+        $auctioneers = Auctioneer::all()->where('type','=','regular');
 
         return view('frontend.pages.auctioneers')->with('auctioneers', $auctioneers);
     }
 
     public function index()
     {
-        $auctioneers = Auctioneer::orderByRaw("FIELD(type, \"submitted\", \"regular\")")->get();;
+        $auctioneers = Auctioneer::orderByRaw("FIELD(type, \"submitted\", \"regular\")")->get();
 
         return view('dashboard.pages.auctioneers.list')->with('auctioneers', $auctioneers);
     }
@@ -58,7 +58,7 @@ class AuctioneersController extends Controller
 
     public function show($id)
     {
-        $auctioneer = Auctioneer::findOrFail($id);
+        $auctioneer = Auctioneer::where([['type','=','regular'], ['id','=',$id]])->firstOrFail();
 
         return view('frontend.pages.auctioneer')->with('auctioneer',$auctioneer);
     }

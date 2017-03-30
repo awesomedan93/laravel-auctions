@@ -106,39 +106,43 @@
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3 class="modal-title">Add your business</h3>
-                    <form id="new-business-form" method="POST" action="/" accept-charset="UTF-8">
+                    <form id="new-business-form" data-toggle="validator">
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business type</label>
-                                    <select class="form-control" name="business-type">
+                                    <select class="form-control" name="business-type" >
                                         <option value="auctioneer">Auctioneer</option>
-                                        <option value="auction-house">Auction House</option>
+                                        <option value="auction_house">Auction House</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">* Name</label>
-                                    <input type="text" class="form-control" name="name" required="">
+                                    <input type="text" class="form-control" name="name" data-error="Name field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" name="city">
+                                    <label>* City</label>
+                                    <input type="text" class="form-control" name="city" data-error="City field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="tel" class="form-control" name="phone">
+                                    <label>* Phone</label>
+                                    <input type="tel" class="form-control" name="phone" data-error="Phone field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email" data-error="That email address is invalid">
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Website</label>
-                                    <input type="url" class="form-control" name="website">
+                                    <input type="text" class="form-control" name="website">
                                 </div>
                             </div>
 
@@ -152,8 +156,8 @@
                                         <input type="hidden" name="lng" id="lng" value="">
 
                                         <span class="input-group-btn">
-                                          <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
-                                        </span>
+                                              <button type="button" class="btn btn-success btn-flat" onclick="codeAddress()">Add marker!</button>
+                                            </span>
                                     </div>
 
                                 </div>
@@ -161,6 +165,7 @@
                                 <div id="map-front">
 
                                 </div>
+                                <br >
                                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
                                 <div class="clearfix"></div>
                             </div>
@@ -173,9 +178,70 @@
     </div>
 </div>
 <script>
-    $('#add-business-modal').on('show.bs.modal', function (event) {
-        initialize();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
+    $(document).ready(function() {
+
+        $('#add-business-modal').on('show.bs.modal', function (event) {
+
+            $('body').addClass('disable-scroll');
+
+            $('#new-business-form').on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                } else {
+                    e.preventDefault();
+
+                    sendBusiness();
+                }
+            })
+            initialize();
+        });
+        $('#add-business-modal').on('hide.bs.modal', function (event) {
+            $('body').removeClass('disable-scroll');
+        });
+
+    });
+
+    //Ajax request
+    function sendBusiness() {
+
+        var formData = {
+            business_type: $("select[name='business-type'] option:selected").val(),
+            name: $("input[name='name']").val(),
+            city: $("input[name='city']").val(),
+            phone: $("input[name='phone']").val(),
+            email: $("input[name='email']").val(),
+            website: $("input[name='website']").val(),
+            address: $("input[name='address']").val(),
+            lat: $("input[name='lat']").val(),
+            lng: $("input[name='lng']").val(),
+        }
+
+        var url = "{{ route('submitBusiness') }}";
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: formData,
+            success: function(data){
+                if(data.status == 'success'){
+                    $('#add-business-modal').modal('hide');
+                    $('#submit-business-success').modal('show');
+                }else if(data.status == 'failed'){
+                    alert("Error on query!");
+                }
+            },
+            error: function(data){
+                var errors = data;
+                console.log(errors);
+            }
+        });
+
+    }
 
     $('#new-business-form').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
@@ -194,7 +260,8 @@
 <script>
 
     function initialize() {
-
+        $("input[name=lat]").val('');
+        $("input[name=lng]").val('');
         window.map = null;
         window.marker = null;
 
@@ -276,50 +343,6 @@
         });
     }
 
-</script>
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $("#new-business-form :submit").click(function(e){
-
-        e.preventDefault();
-
-        var formData = {
-            business_type: $("select[name='business-type'] option:selected").val(),
-            name: $("input[name='name']").val(),
-            city: $("input[name='city']").val(),
-            phone: $("input[name='phone']").val(),
-            email: $("input[name='email']").val(),
-            website: $("input[name='website']").val(),
-            address: $("input[name='address']").val(),
-            lat: $("input[name='lat']").val(),
-            lng: $("input[name='lng']").val(),
-        }
-
-        var url = "{{ route('submitBusiness') }}";
-
-        $.ajax({
-            method: "POST",
-            url: url,
-            data: formData,
-            success: function(data){
-                if(data.status == 'success'){
-                    $('#add-business-modal').modal('hide');
-                    $('#submit-business-success').modal('show');
-                }else if(data.status == 'failed'){
-                    alert("Error on query!");
-                }
-            },
-            error: function(data){
-                var errors = data;
-                console.log(errors);
-            }
-        });
-    });
 </script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A">

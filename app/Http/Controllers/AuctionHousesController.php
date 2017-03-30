@@ -23,14 +23,14 @@ class AuctionHousesController extends Controller
      */
     public function showAll()
     {
-        $auctionHouses = AuctionHouse::all();
+        $auctionHouses = AuctionHouse::all()->where('type','=','regular');
 
         return view('frontend.pages.auction-houses')->with('auctionHouses', $auctionHouses);
     }
 
     public function index()
     {
-        $auctionHouses = AuctionHouse::all();
+        $auctionHouses = AuctionHouse::orderByRaw("FIELD(type, \"submitted\", \"regular\")")->get();
 
         return view('dashboard.pages.auctionhouses.list')->with('auctionHouses', $auctionHouses);
     }
@@ -62,7 +62,7 @@ class AuctionHousesController extends Controller
 
     public function show($id)
     {
-        $auctionHouse = AuctionHouse::findOrFail($id);
+        $auctionHouse = AuctionHouse::where([['type','=','regular'], ['id','=',$id]])->firstOrFail();
 
         return view('frontend.pages.auctioneer-house')->with('auctionHouse',$auctionHouse);
     }

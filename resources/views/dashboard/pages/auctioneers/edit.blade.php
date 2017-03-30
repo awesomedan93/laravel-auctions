@@ -164,7 +164,8 @@
                             url: url,
                             success: function(data){
                                 swal("Approved!", "The auctioneer has been approved.", "success");
-                                //window.location.replace("/dashboard/auctioneers");
+                                $('.button-approve-auctioneer').remove();
+                                $('.alert-warning').remove();
                             },
                             error: function(data){
                                 var errors = data;

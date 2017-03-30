@@ -80,6 +80,22 @@
             </div>
         </div>
 
+        <!-- Modal Submit Business Success -->
+        <div class="modal fade" id="submit-business-success" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title pull-left">Success..</h3>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>One of the members of our team will review your post in the shortest possible time</label><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Modal Add Business -->
         <div class="modal fade"  id="add-business-modal" tabindex="-1" role="dialog"
@@ -89,34 +105,38 @@
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3 class="modal-title">Add your business</h3>
-                    <form id="new-business-form" method="POST" action="/" accept-charset="UTF-8">
+                    <form id="new-business-form" data-toggle="validator">
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business type</label>
-                                    <select class="form-control" name="business-type">
-                                        <option value="1">Auctioneer</option>
-                                        <option value="2">Auction House</option>
+                                    <select class="form-control" name="business-type" >
+                                        <option value="auction_house">Auction House</option>
+                                        <option value="auctioneer">Auctioneer</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">* Name</label>
-                                    <input type="text" class="form-control" name="name" required="">
+                                    <input type="text" class="form-control" name="name" data-error="Name field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" name="city">
+                                    <label>* City</label>
+                                    <input type="text" class="form-control" name="city" data-error="City field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="tel" class="form-control" name="phone">
+                                    <label>* Phone</label>
+                                    <input type="tel" class="form-control" name="phone" data-error="Phone field is required" required>
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email" data-error="That email address is invalid">
+                                    <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -144,6 +164,7 @@
                                 <div id="map-front">
 
                                 </div>
+                                <br >
                                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
                                 <div class="clearfix"></div>
                             </div>
@@ -156,9 +177,70 @@
     </div>
     </div>
     <script>
-        $('#add-business-modal').on('show.bs.modal', function (event) {
-            initialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+
+        $(document).ready(function() {
+
+            $('#add-business-modal').on('show.bs.modal', function (event) {
+
+                $('body').addClass('disable-scroll');
+
+                initialize();
+
+                $('#new-business-form').on('submit', function (e) {
+                    if (e.isDefaultPrevented()) {
+                    } else {
+                        e.preventDefault() // if you're using AJAX
+                        sendBusiness();
+                    }
+                })
+            });
+            $('#add-business-modal').on('hide.bs.modal', function (event) {
+                $('body').removeClass('disable-scroll');
+            });
+
+        });
+
+        //Ajax request
+        function sendBusiness() {
+
+            var formData = {
+                business_type: $("select[name='business-type'] option:selected").val(),
+                name: $("input[name='name']").val(),
+                city: $("input[name='city']").val(),
+                phone: $("input[name='phone']").val(),
+                email: $("input[name='email']").val(),
+                website: $("input[name='website']").val(),
+                address: $("input[name='address']").val(),
+                lat: $("input[name='lat']").val(),
+                lng: $("input[name='lng']").val(),
+            }
+
+            var url = "{{ route('submitBusiness') }}";
+
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: formData,
+                success: function(data){
+                    if(data.status == 'success'){
+                        $('#add-business-modal').modal('hide');
+                        $('#submit-business-success').modal('show');
+                    }else if(data.status == 'failed'){
+                        alert("Error on query!");
+                    }
+                },
+                error: function(data){
+                    var errors = data;
+                    console.log(errors);
+                }
+            });
+
+        }
 
         $('#new-business-form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;
@@ -177,7 +259,8 @@
     <script>
 
         function initialize() {
-
+            $("input[name=lat]").val('');
+            $("input[name=lng]").val('');
             window.map = null;
             window.marker = null;
 
