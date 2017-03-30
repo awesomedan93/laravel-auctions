@@ -19,7 +19,7 @@
 
             <h1 class="title-business">Auctioneers & Auction Companies in Atlanta, GA</h1>
             <span class="info-text">
-                Contact us <a href="#" data-toggle="modal" data-target="#correction-modal">here</a> to report a correction or click <a href="#" data-toggle="modal" data-target="#add-business-modal">here</a> to add your business for free
+                Click <a href="#" data-toggle="modal" data-target="#correction-modal">here</a> to report a correction or click <a href="#" data-toggle="modal" data-target="#add-business-modal">here</a> to add your business for free
             </span>
             <span class="bootstrap-styles">
                 <button type="button" id="#add-business-modal" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add-business-modal">Add your business</button>
