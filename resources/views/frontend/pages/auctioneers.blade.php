@@ -19,7 +19,7 @@
 
             <h1 class="title-business">Auctioneers & Auction Companies in Atlanta, GA</h1>
             <span class="info-text">
-                Contact us <a href="#" data-toggle="modal" data-target="#report-modal">here</a> to report a correction or click <a href="#" data-toggle="modal" data-target="#add-business-modal">here</a> to add your business for free
+                Contact us <a href="#" data-toggle="modal" data-target="#correction-modal">here</a> to report a correction or click <a href="#" data-toggle="modal" data-target="#add-business-modal">here</a> to add your business for free
             </span>
             <span class="bootstrap-styles">
                 <button type="button" id="#add-business-modal" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add-business-modal">Add your business</button>
@@ -58,21 +58,20 @@
         <div class="clear"></div>
     </main>
 </div>
-<!-- Modal Submit Corrections -->
+
 <div class="bootstrap-styles">
-    <!-- Modal -->
-    <div class="modal fade"  id="report-modal" tabindex="-1" role="dialog"
+    <!-- Modal Submit Corrections -->
+    <div class="modal fade"  id="correction-modal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3 class="modal-title">Report Corrections</h3>
-                    <form method="POST" action="/" accept-charset="UTF-8">
-                        <input name="_token" type="hidden" value="MB5EA5hsQAoxBMhsYCwf9CR9UA4byeVe7ejOepkT">
-                        <input type="hidden" name="casa_id" value="2369">
+                    <form id="correction-form">
+
                         <div class="form-group">
-                            <textarea class="form-control" name="report" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
+                            <textarea class="form-control" name="text" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
                         </div>
                         <input type="submit" class="btn btn-primary pull-right" value="Submit">
                         <div class="clearfix"></div>
@@ -81,7 +80,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal Submit Business Success -->
+    <!-- Modal Success -->
     <div class="modal fade" id="submit-business-success" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
@@ -183,6 +182,11 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+</script>
+
+@include('frontend.partials.correction')
+
+<script>
 
     $(document).ready(function() {
 
@@ -197,7 +201,7 @@
 
                     sendBusiness();
                 }
-            })
+            });
             initialize();
         });
         $('#add-business-modal').on('hide.bs.modal', function (event) {

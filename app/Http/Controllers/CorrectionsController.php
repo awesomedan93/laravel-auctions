@@ -10,7 +10,7 @@ class CorrectionsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>['show']]);
+        $this->middleware('auth', ['except'=>['store']]);
     }
 
 
@@ -31,7 +31,9 @@ class CorrectionsController extends Controller
         $saved = $correction->save();
 
         if($saved){
-            return redirect()->route('auctioneers.index');
+            return response()->json(['status'=>'success']);
+        }else{
+            return response()->json(['status'=>'failed']);
         }
     }
 

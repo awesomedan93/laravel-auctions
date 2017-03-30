@@ -113,7 +113,7 @@ class AuctionHousesController extends Controller
         $inputData['type'] = AuctionHouse::REGULAR_AUCTION_HOUSE;
 
         $updated = AuctionHouse::findOrFail($id)->update($inputData);
-        dd($updated);
+
         if($updated){
             return redirect()->route('auctioneers.index');
         }

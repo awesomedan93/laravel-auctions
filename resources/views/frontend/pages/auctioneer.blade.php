@@ -29,7 +29,7 @@
 
                 <h1 class="float-left">{{ $auctioneer->name }}</h1>
                 <span class="bootstrap-styles">
-                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#report-modal">Report Corrections</button>
+                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#correction-modal">Report Corrections</button>
                 </span>
                 <div class="clear-both"></div>
                 <div class="left-block">
@@ -72,19 +72,35 @@
 
     <!-- Large modal -->
     <div class="bootstrap-styles">
-        <!-- Modal -->
-        <div class="modal fade"  id="report-modal" tabindex="-1" role="dialog"
+        <!-- Modal Success -->
+        <div class="modal fade" id="submit-business-success" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title pull-left">Success..</h3>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>One of the members of our team will review your post in the shortest possible time</label><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Submit Corrections -->
+        <div class="modal fade"  id="correction-modal" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" >
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal">×</button>
                         <h3 class="modal-title">Report Corrections</h3>
-                        <form method="POST" action="/" accept-charset="UTF-8">
-                            <input name="_token" type="hidden" value="MB5EA5hsQAoxBMhsYCwf9CR9UA4byeVe7ejOepkT">
-                            <input type="hidden" name="casa_id" value="2369">
+                        <form id="correction-form">
+
                             <div class="form-group">
-                                <textarea class="form-control" name="report" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
+                                <textarea class="form-control" name="text" placeholder="Write corrections and updates here..." rows="8" required=""></textarea>
                             </div>
                             <input type="submit" class="btn btn-primary pull-right" value="Submit">
                             <div class="clearfix"></div>
@@ -94,9 +110,16 @@
             </div>
         </div>
     </div>
-@endsection
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
-@section('custom-footer-js')
+    @include('frontend.partials.correction')
+
     <script>
         var geocoder;
         var map;
@@ -124,6 +147,10 @@
         }
 
     </script>
+@endsection
+
+@section('custom-footer-js')
+
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXlBaKMHpXArLGHk4MrTs6TuTFEN1OA1A&callback=initialize">
     </script>
