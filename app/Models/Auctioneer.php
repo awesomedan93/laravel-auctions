@@ -16,7 +16,7 @@ class Auctioneer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
+        'name', 'slug', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
     ];
 
     public function users()

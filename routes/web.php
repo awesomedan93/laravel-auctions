@@ -7,10 +7,10 @@ Route::get('/', function () {
 });
 
 Route::get('/auctioneers', 'AuctioneersController@showAll');
-Route::get('/auctioneers/{id}', 'AuctioneersController@show');
+Route::get('/auctioneers/{slug}', 'AuctioneersController@show');
 
 Route::get('/auction-houses', 'AuctionHousesController@showAll');
-Route::get('/auction-houses/{id}', 'AuctionHousesController@show');
+Route::get('/auction-houses/{slug}', 'AuctionHousesController@show');
 
 Route::get('/contact', function () {
     return view('frontend/pages/contact');

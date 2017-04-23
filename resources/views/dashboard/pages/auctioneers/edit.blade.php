@@ -50,26 +50,30 @@
                             {{ csrf_field() }}
 
                             <div class="box-body">
-                                <input type="hidden" name="id" value="{{ $auctioneer->id }}">
+                                <input type="hidden" name="id" value="{{ old('id',$auctioneer->id) }}">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" value="{{ $auctioneer->name }}" id="name" placeholder="Enter name">
+                                    <input type="text" class="form-control basic-usage" name="name" value="{{ old('name',$auctioneer->name) }}" id="name" placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Auctioneer slug</label>
+                                    <input type="text" class="form-control" id="permalink" name="slug" placeholder="Enter slug" value="{{ old('slug', $auctioneer->slug) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <input type="text" class="form-control" name="city" value="{{ $auctioneer->city }}" id="city" placeholder="City">
+                                    <input type="text" class="form-control" name="city" value="{{ old('city', $auctioneer->city) }}" id="city" placeholder="City">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ $auctioneer->phone }}" id="phone" placeholder="Phone">
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone',$auctioneer->phone) }}" id="phone" placeholder="Phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" value="{{ $auctioneer->email }}" id="email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email',$auctioneer->email) }}" id="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="website">Website</label>
-                                    <input type="text" class="form-control" name="website" value="{{ $auctioneer->website }}" id="website" placeholder="Website">
+                                    <input type="text" class="form-control" name="website" value="{{ old('website',$auctioneer->website) }}" id="website" placeholder="Website">
                                 </div>
 
                             </div>
@@ -132,7 +136,23 @@
 
 @endsection
 @section('custom-footer-js')
+    <script src="{{ asset('assets/dashboard/plugins/speakingUrl/speakingurl.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/plugins/stringToSlug/jquery.stringtoslug.min.js') }}"></script>
+
     <script>
+
+        $(".basic-usage").stringToSlug({
+            setEvents: 'keyup keydown blur',
+            getPut: '#permalink',
+            space: '-',
+            prefix: '',
+            suffix: '',
+            replace: '',
+            AND: 'and',
+            options: {},
+            callback: false
+        });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

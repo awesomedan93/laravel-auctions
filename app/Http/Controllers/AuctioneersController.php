@@ -41,7 +41,8 @@ class AuctioneersController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'slug' => "required|unique:auctioneers,slug"
         ]);
 
         $inputData = $request->all();
@@ -56,9 +57,9 @@ class AuctioneersController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $auctioneer = Auctioneer::where([['type','=','regular'], ['id','=',$id]])->firstOrFail();
+        $auctioneer = Auctioneer::where([['type','=','regular'], ['slug','=',$slug]])->firstOrFail();
 
         return view('frontend.pages.auctioneer')->with('auctioneer',$auctioneer);
     }
@@ -75,7 +76,8 @@ class AuctioneersController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'slug' => "required|unique:auctioneers,slug,{$id}"
         ]);
 
         $inputData = $request->all();

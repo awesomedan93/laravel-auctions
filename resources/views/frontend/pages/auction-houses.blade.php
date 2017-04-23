@@ -38,11 +38,11 @@
                         @foreach($auctionHouses as $auctionHouse)
 
                             <tr>
-                                <td class="column-name"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">{{ $auctionHouse->name }}</a></td>
+                                <td class="column-name"><a href="{{ url("/auction-houses/$auctionHouse->slug") }}">{{ $auctionHouse->name }}</a></td>
                                 <td class="responsive-column column-address">{{ $auctionHouse->address }}</td>
                                 <td class="responsive-column column-phone">{{ $auctionHouse->phone }}</td>
                                 <td class="responsive-column column-email">{{ $auctionHouse->email }}</td>
-                                <td class="responsive-column-mid column-info"><a href="{{ url("/auction-houses/$auctionHouse->id") }}">More Info</a></td>
+                                <td class="responsive-column-mid column-info"><a href="{{ url("/auction-houses/$auctionHouse->slug") }}">More Info</a></td>
                             </tr>
                         @endforeach
                         </tbody>

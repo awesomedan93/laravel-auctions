@@ -11,6 +11,6 @@ class AuctionHouse extends Model
     const SUBMITTED_AUCTION_HOUSE = 'submitted';
 
     protected $fillable = [
-        'name', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
+        'name', 'slug', 'address', 'type', 'city', 'lat', 'lng', 'phone', 'email', 'website', 'user_id',
     ];
 }

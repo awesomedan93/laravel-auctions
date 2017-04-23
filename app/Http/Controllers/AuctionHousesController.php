@@ -45,7 +45,8 @@ class AuctionHousesController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'slug' => "required|unique:auctioneers,slug"
         ]);
 
         $inputData = $request->all();
@@ -60,9 +61,9 @@ class AuctionHousesController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $auctionHouse = AuctionHouse::where([['type','=','regular'], ['id','=',$id]])->firstOrFail();
+        $auctionHouse = AuctionHouse::where([['type','=','regular'], ['slug','=',$slug]])->firstOrFail();
 
         return view('frontend.pages.auctioneer-house')->with('auctionHouse',$auctionHouse);
     }
@@ -79,7 +80,8 @@ class AuctionHousesController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'slug' => "required|unique:auctioneers,slug"
         ]);
 
         $inputData = $request->all();
