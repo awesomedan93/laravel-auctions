@@ -57,7 +57,7 @@
                                         <td>{{ $auctioneer->email }}</td>
                                         <td>{{ $auctioneer->created_at }}</td>
                                         <td>
-                                            <a href="{{ url("/auctioneers/$auctioneer->id") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
+                                            <a href="{{ url("/auctioneers/$auctioneer->slug") }}" target="_blank" role="button" class="btn btn-link btn-xs">View</a>
                                             <a href="{{ URL::action('AuctioneersController@edit', [$auctioneer->id]) }}" role="button" class="btn btn-primary btn-xs">Edit</a>
 
                                             {{ Form::open(['route' => ['auctioneers.destroy', $auctioneer->id], 'method' => 'delete', 'id'=>'auctioneer-form-delete', 'style'=>'display:inline;']) }}
